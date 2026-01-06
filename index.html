@@ -1469,7 +1469,7 @@
         // Fetch Bluesky posts
         async function fetchBlueskyPosts() {
             const handle = 'caseynewton.bsky.social';
-            const apiUrl = `https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=${handle}&limit=5&filter=posts_no_replies`;
+            const apiUrl = `https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=${handle}&limit=20&filter=posts_no_replies`;
 
             try {
                 const response = await fetch(apiUrl);
@@ -1478,7 +1478,10 @@
                 if (data.feed && data.feed.length > 0) {
                     const feedContainer = document.getElementById('bsky-feed');
 
-                    feedContainer.innerHTML = data.feed.map((item, index) => {
+                    // Filter out reposts (they have a reason field with repost type)
+                    const originalPosts = data.feed.filter(item => !item.reason);
+
+                    feedContainer.innerHTML = originalPosts.slice(0, 5).map((item, index) => {
                         const post = item.post;
                         const text = post.record.text;
                         const date = new Date(post.record.createdAt);
