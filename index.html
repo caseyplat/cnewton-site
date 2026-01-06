@@ -1023,6 +1023,116 @@
             z-index: 100;
         }
 
+        /* Bluesky Section */
+        .bluesky {
+            padding: 8rem 3rem;
+            background: var(--dark);
+            position: relative;
+        }
+
+        .bluesky::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), transparent);
+        }
+
+        .bluesky-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .bluesky-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .bsky-post {
+            background: var(--gray);
+            padding: 1.5rem;
+            border-left: 3px solid var(--cyan);
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .bsky-post.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .bsky-post:hover {
+            border-left-color: var(--magenta);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .bsky-post-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--light);
+            margin-bottom: 1rem;
+        }
+
+        .bsky-post-text a {
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        .bsky-post-text a:hover {
+            text-decoration: underline;
+        }
+
+        .bsky-post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: rgba(224, 224, 232, 0.5);
+        }
+
+        .bsky-post-date {
+            font-family: 'Space Mono', monospace;
+        }
+
+        .bsky-post-link {
+            font-family: 'Silkscreen', cursive;
+            color: var(--cyan);
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .bsky-post-link:hover {
+            color: var(--magenta);
+        }
+
+        .bsky-follow {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .bsky-follow a {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.75rem;
+            color: var(--cyan);
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .bsky-follow a:hover {
+            color: var(--magenta);
+            text-shadow: 0 0 10px var(--magenta);
+        }
+
+        .bsky-follow a::after {
+            content: ' →';
+        }
+
         /* Music Section */
         .music {
             padding: 8rem 3rem;
@@ -1170,6 +1280,21 @@
                 <p>I'm the founder and editor of <a href="https://www.platformer.news/" target="_blank" class="bio-highlight alt">Platformer</a>, a publication about the intersection of tech and democracy; and the co-host of <a href="https://www.nytimes.com/column/hard-fork" target="_blank" class="bio-highlight alt">Hard Fork</a>, a New York Times podcast about the future that's already here. Prior to founding Platformer in 2020, I was the longtime Silicon Valley editor of <a href="https://www.theverge.com/" target="_blank" class="bio-highlight">The Verge</a>, where I covered the rise of social platforms and their growing influence on public discourse.</p>
                 <p>My reporting has focused content moderation, platform governance, and the labor practices of tech giants. My stories about the human cost of building the internet we all use were a finalist for the National Magazine Award.</p>
                 <p>I live in San Francisco with my boyfriend.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bluesky Section -->
+    <section class="bluesky" id="thoughts">
+        <div class="section-header">
+            <span class="section-tag">// LATEST THOUGHTS</span>
+        </div>
+        <div class="bluesky-content">
+            <div class="bluesky-posts" id="bsky-feed">
+                <!-- Posts loaded via JavaScript -->
+            </div>
+            <div class="bsky-follow">
+                <a href="https://bsky.app/profile/caseynewton.bsky.social" target="_blank">FOLLOW ON BLUESKY</a>
             </div>
         </div>
     </section>
@@ -1340,6 +1465,64 @@
         }
 
         fetchHardForkVideos();
+
+        // Fetch Bluesky posts
+        async function fetchBlueskyPosts() {
+            const handle = 'caseynewton.bsky.social';
+            const apiUrl = `https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=${handle}&limit=5&filter=posts_no_replies`;
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.feed && data.feed.length > 0) {
+                    const feedContainer = document.getElementById('bsky-feed');
+
+                    feedContainer.innerHTML = data.feed.map((item, index) => {
+                        const post = item.post;
+                        const text = post.record.text;
+                        const date = new Date(post.record.createdAt);
+                        const formattedDate = date.toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric'
+                        });
+
+                        // Convert AT URI to Bluesky URL
+                        const postId = post.uri.split('/').pop();
+                        const postUrl = `https://bsky.app/profile/${handle}/post/${postId}`;
+
+                        // Convert URLs in text to links
+                        const linkedText = text.replace(
+                            /(https?:\/\/[^\s]+)/g,
+                            '<a href="$1" target="_blank">$1</a>'
+                        );
+
+                        return `
+                            <div class="bsky-post" style="transition-delay: ${index * 0.1}s">
+                                <p class="bsky-post-text">${linkedText}</p>
+                                <div class="bsky-post-meta">
+                                    <span class="bsky-post-date">${formattedDate}</span>
+                                    <a href="${postUrl}" target="_blank" class="bsky-post-link">VIEW POST</a>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+
+                    // Trigger animation after a brief delay
+                    setTimeout(() => {
+                        document.querySelectorAll('.bsky-post').forEach(el => {
+                            observer.observe(el);
+                        });
+                    }, 100);
+                }
+            } catch (error) {
+                console.log('Could not fetch Bluesky posts:', error);
+                document.getElementById('bsky-feed').innerHTML = '<p style="color: rgba(224,224,232,0.5); text-align: center;">Could not load posts</p>';
+            }
+        }
+
+        fetchBlueskyPosts();
 
         // Back to top button
         const backToTopBtn = document.querySelector('.back-to-top');
