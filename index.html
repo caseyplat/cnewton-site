@@ -1086,6 +1086,35 @@
             text-decoration: underline;
         }
 
+        .bsky-post-images {
+            display: grid;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .bsky-post-images.single {
+            grid-template-columns: 1fr;
+        }
+
+        .bsky-post-images.multiple {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .bsky-post-images img {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .bsky-post-images img:hover {
+            opacity: 0.85;
+        }
+
         .bsky-post-meta {
             display: flex;
             justify-content: space-between;
@@ -1501,9 +1530,26 @@
                             '<a href="$1" target="_blank">$1</a>'
                         );
 
+                        // Check for images
+                        let imagesHtml = '';
+                        if (post.embed && post.embed.$type === 'app.bsky.embed.images#view' && post.embed.images) {
+                            const images = post.embed.images;
+                            const gridClass = images.length === 1 ? 'single' : 'multiple';
+                            imagesHtml = `
+                                <div class="bsky-post-images ${gridClass}">
+                                    ${images.map(img => `
+                                        <a href="${img.fullsize}" target="_blank">
+                                            <img src="${img.thumb}" alt="${img.alt || 'Image'}" loading="lazy">
+                                        </a>
+                                    `).join('')}
+                                </div>
+                            `;
+                        }
+
                         return `
                             <div class="bsky-post" style="transition-delay: ${index * 0.1}s">
                                 <p class="bsky-post-text">${linkedText}</p>
+                                ${imagesHtml}
                                 <div class="bsky-post-meta">
                                     <span class="bsky-post-date">${formattedDate}</span>
                                     <a href="${postUrl}" target="_blank" class="bsky-post-link">VIEW POST</a>
