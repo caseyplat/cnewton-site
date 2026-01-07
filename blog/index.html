@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Casey Newton</title>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <meta name="description" content="Thoughts and updates from Casey Newton, founder of Platformer and co-host of Hard Fork.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cnewton.org/blog/">
+    <meta property="og:title" content="Blog — Casey Newton">
+    <meta property="og:description" content="Thoughts and updates from Casey Newton.">
+    <meta property="og:image" content="https://cnewton.org/headshot.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/shared.css">
+    <style>
+        /* Blog-specific styles */
+        body {
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        /* Main content - with padding for fixed nav */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 2rem 2rem 2rem;
+        }
+
+        /* Post cards - matching micro.blog exactly */
+        .post-card {
+            background: var(--dark);
+            border: 1px solid var(--gray);
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin-bottom: 0;
+            transition: all 0.3s ease;
+        }
+
+        .post-card:hover {
+            border-color: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+        }
+
+        /* Full-width divider between posts */
+        .post-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), transparent);
+            margin: 2rem 0;
+        }
+
+        .post-date {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.7rem;
+            color: #FF00FF;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: block;
+            padding: 0 20px;
+            transition: all 0.3s ease;
+        }
+
+        .post-date:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF;
+            text-decoration: none;
+        }
+
+        .post-title, article h2, .entry-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 27px;
+            color: var(--light);
+            margin-bottom: 22px;
+            padding: 0 20px;
+            line-height: 35px;
+        }
+
+        .post-title a, article h2 a, .entry-title a {
+            background: linear-gradient(135deg, var(--light) 0%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .post-title a:hover, article h2 a:hover, .entry-title a:hover {
+            text-shadow: 0 0 10px var(--magenta);
+        }
+
+        /* Post content - matching micro.blog (18px base from template) */
+        .post-content {
+            font-family: 'Space Mono', monospace;
+            font-size: 18px;
+            line-height: 27px;
+            color: var(--light);
+            padding: 0 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 18px;
+        }
+
+        .post-content a {
+            color: var(--cyan);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .post-content a:hover {
+            color: var(--magenta);
+            text-shadow: 0 0 10px var(--magenta);
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid var(--gray);
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        .post-content iframe {
+            display: block;
+            width: calc(100% + 40px);
+            margin-left: -20px;
+            margin-right: -20px;
+            max-width: none;
+            border-radius: 4px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            aspect-ratio: 16 / 9;
+        }
+
+        .post-content blockquote {
+            border-left: 3px solid var(--cyan);
+            background: var(--gray);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        .post-content pre,
+        .post-content code {
+            font-family: 'Space Mono', monospace;
+            background: var(--gray);
+            color: var(--cyan);
+            border-radius: 4px;
+        }
+
+        .post-content code {
+            padding: 0.2em 0.4em;
+        }
+
+        .post-content pre {
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .post-content pre code {
+            padding: 0;
+        }
+
+        .post-content ul,
+        .post-content ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Widgets container */
+        .widgets-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Currently Reading Widget - matching micro.blog exactly */
+        .currently-reading-widget {
+            background: var(--dark);
+            border: 1px solid var(--magenta);
+            border-radius: 4px;
+            padding: 1rem;
+            max-width: 300px;
+            width: 100%;
+        }
+
+        .currently-reading-widget .widget-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .currently-reading-widget .pixel-icon {
+            font-size: 1.2rem;
+        }
+
+        .currently-reading-widget .widget-label {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.65rem;
+            color: var(--magenta);
+            letter-spacing: 2px;
+        }
+
+        .currently-reading-widget .widget-content {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .currently-reading-widget .book-cover {
+            width: 64px;
+            height: auto;
+            max-height: 96px;
+            border: 2px solid var(--magenta);
+            border-radius: 2px;
+            object-fit: cover;
+        }
+
+        .currently-reading-widget .book-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .currently-reading-widget .book-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--light);
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .currently-reading-widget .book-author {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--cyan);
+        }
+
+        .currently-reading-widget .widget-link {
+            display: block;
+            margin-top: 0.75rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--gray);
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.55rem;
+            color: var(--magenta);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .currently-reading-widget .widget-link:hover {
+            color: var(--cyan);
+        }
+
+        /* Now Playing Widget - matching micro.blog exactly */
+        .now-playing-widget {
+            background: var(--dark);
+            border: 1px solid var(--cyan);
+            border-radius: 4px;
+            padding: 1rem;
+            max-width: 300px;
+            width: 100%;
+        }
+
+        .now-playing-widget .widget-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .now-playing-widget .pixel-icon {
+            color: var(--magenta);
+            font-size: 1.2rem;
+        }
+
+        .now-playing-widget .widget-label {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.65rem;
+            color: var(--cyan);
+            letter-spacing: 2px;
+        }
+
+        .now-playing-widget.is-playing .widget-label {
+            color: var(--magenta);
+            animation: pulse 2s infinite;
+        }
+
+        .now-playing-widget .widget-content {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .now-playing-widget .album-art {
+            width: 64px;
+            height: 64px;
+            border: 2px solid var(--cyan);
+            border-radius: 2px;
+            object-fit: cover;
+            background: var(--gray);
+        }
+
+        .now-playing-widget .track-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .now-playing-widget .track-name {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--light);
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .now-playing-widget .artist-name {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--magenta);
+        }
+
+        .now-playing-widget .widget-link {
+            display: block;
+            margin-top: 0.75rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--gray);
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.55rem;
+            color: var(--cyan);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .now-playing-widget .widget-link:hover {
+            color: var(--magenta);
+        }
+
+        /* Weather Widget */
+        .weather-widget {
+            background: var(--dark);
+            border: 1px solid var(--cyan);
+            border-radius: 4px;
+            padding: 1rem;
+            max-width: 300px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .weather-widget .weather-icon {
+            font-size: 1.5rem;
+        }
+
+        .weather-widget .weather-location {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.65rem;
+            color: var(--cyan);
+            letter-spacing: 2px;
+        }
+
+        .weather-widget .weather-temp {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            color: var(--light);
+            font-weight: bold;
+        }
+
+        .weather-widget .weather-desc {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--magenta);
+            flex: 1;
+            text-align: right;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Footer - additional blog-specific styling */
+        footer {
+            margin-top: 2rem;
+        }
+
+        /* Responsive - blog-specific */
+        @media (max-width: 768px) {
+            main {
+                padding: 5rem 1rem 1rem 1rem;
+            }
+        }
+
+        /* Loading state */
+        .loading {
+            color: rgba(224, 224, 232, 0.5);
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (rendered by components.js) -->
+    <nav id="site-nav" data-active="/blog/"></nav>
+
+    <main>
+        <!-- Posts -->
+        <div id="posts-container">
+            <div class="loading">Loading posts...</div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Widgets -->
+        <div class="widgets-container">
+            <!-- Weather Widget -->
+            <div class="weather-widget" id="weather-widget">
+                <span class="weather-icon">☀</span>
+                <span class="weather-location">SF</span>
+                <span class="weather-temp">--°</span>
+                <span class="weather-desc">Loading...</span>
+            </div>
+
+            <!-- Currently Reading Widget -->
+            <div class="currently-reading-widget" id="reading-widget">
+                <div class="widget-header">
+                    <span class="pixel-icon">📖</span>
+                    <span class="widget-label">CURRENTLY READING</span>
+                </div>
+                <div class="widget-content" id="book-content">
+                    <div class="loading">Loading...</div>
+                </div>
+            </div>
+
+            <!-- Last Played Widget -->
+            <div class="now-playing-widget" id="now-playing-widget">
+                <div class="widget-header">
+                    <span class="pixel-icon">♪</span>
+                    <span class="widget-label" id="playing-label">LAST PLAYED</span>
+                </div>
+                <div class="widget-content">
+                    <img id="album-art" src="" alt="Album Art" class="album-art">
+                    <div class="track-info">
+                        <div id="track-name" class="track-name">Loading...</div>
+                        <div id="artist-name" class="artist-name"></div>
+                    </div>
+                </div>
+                <a id="lastfm-link" href="https://www.last.fm/user/caseyswan" target="_blank" class="widget-link">
+                    VIEW ON LAST.FM →
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (rendered by components.js) -->
+    <footer id="site-footer"></footer>
+
+    <!-- Shared components -->
+    <script src="../js/components.js"></script>
+
+    <script>
+        // Fetch Weather
+        (function() {
+            fetch('https://wttr.in/San+Francisco?format=j1')
+                .then(response => response.json())
+                .then(data => {
+                    const current = data.current_condition[0];
+                    const temp = current.temp_F;
+                    const desc = current.weatherDesc[0].value;
+                    const code = parseInt(current.weatherCode);
+
+                    let icon = '☀'; // default sun
+                    if (code >= 200 && code < 300) icon = '⚡'; // thunderstorm
+                    else if (code >= 300 && code < 600) icon = '🌧'; // rain
+                    else if (code >= 600 && code < 700) icon = '❄'; // snow
+                    else if (code >= 700 && code < 800) icon = '🌫'; // fog
+                    else if (code === 800) icon = '☀'; // clear
+                    else if (code > 800) icon = '☁'; // clouds
+
+                    const iconEl = document.querySelector('.weather-icon');
+                    const tempEl = document.querySelector('.weather-temp');
+                    const descEl = document.querySelector('.weather-desc');
+
+                    if (iconEl) iconEl.textContent = icon;
+                    if (tempEl) tempEl.textContent = temp + '°F';
+                    if (descEl) descEl.textContent = desc;
+                })
+                .catch(err => {
+                    const descEl = document.querySelector('.weather-desc');
+                    if (descEl) descEl.textContent = '';
+                });
+        })();
+
+        // Fetch Currently Reading
+        (function() {
+            fetch('/data/book.json')
+                .then(response => response.json())
+                .then(book => {
+                    const container = document.getElementById('book-content');
+                    container.innerHTML = `
+                        ${book.cover_url ? `<img src="${book.cover_url}" alt="${book.title}" class="book-cover">` : ''}
+                        <div class="book-info">
+                            <div class="book-title">${book.title}</div>
+                            <div class="book-author">${book.author}</div>
+                        </div>
+                    `;
+                    if (book.isbn) {
+                        const widget = document.getElementById('reading-widget');
+                        const link = document.createElement('a');
+                        link.href = `https://micro.blog/books/${book.isbn}`;
+                        link.target = '_blank';
+                        link.className = 'widget-link';
+                        link.textContent = 'VIEW ON MICRO.BLOG →';
+                        widget.appendChild(link);
+                    }
+                })
+                .catch(err => {
+                    document.getElementById('book-content').innerHTML = '<div style="color: rgba(224,224,232,0.5)">No book set</div>';
+                });
+        })();
+
+        // Fetch Last.fm Now Playing
+        (function() {
+            const LASTFM_API_KEY = '03e28ba92a50fd89fcebfc14b0b1bec2';
+            const LASTFM_USER = 'caseyswan';
+
+            function fetchNowPlaying() {
+                const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USER}&api_key=${LASTFM_API_KEY}&limit=1&format=json`;
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        const track = data.recenttracks.track[0];
+                        if (track) {
+                            const isPlaying = track['@attr'] && track['@attr'].nowplaying === 'true';
+                            const label = document.getElementById('playing-label');
+                            const widget = document.getElementById('now-playing-widget');
+
+                            if (isPlaying) {
+                                label.textContent = 'NOW PLAYING';
+                                widget.classList.add('is-playing');
+                            } else {
+                                label.textContent = 'LAST PLAYED';
+                                widget.classList.remove('is-playing');
+                            }
+
+                            document.getElementById('track-name').textContent = track.name;
+                            document.getElementById('artist-name').textContent = track.artist['#text'];
+
+                            const albumArt = track.image[2]['#text'] || track.image[1]['#text'];
+                            if (albumArt) {
+                                document.getElementById('album-art').src = albumArt;
+                            }
+                            document.getElementById('lastfm-link').href = track.url;
+                        }
+                    })
+                    .catch(err => {
+                        console.log('Error fetching Last.fm data:', err);
+                    });
+            }
+
+            fetchNowPlaying();
+            setInterval(fetchNowPlaying, 30000);
+        })();
+
+        // Fetch Blog Posts
+        (function() {
+            fetch('https://blog.cnewton.org/feed.json')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('posts-container');
+                    const posts = data.items || [];
+
+                    if (posts.length === 0) {
+                        container.innerHTML = '<p class="loading">No posts yet</p>';
+                        return;
+                    }
+
+                    container.innerHTML = posts.map((post, index) => {
+                        const date = new Date(post.date_published);
+                        const formattedDate = date.toLocaleDateString('en-US', {
+                            month: 'long',
+                            day: 'numeric',
+                            year: 'numeric'
+                        }).toUpperCase();
+
+                        const title = post.title || '';
+                        const content = post.content_html || post.content_text || '';
+
+                        // Add divider after each post except the last
+                        const divider = index < posts.length - 1 ? '<div class="post-divider"></div>' : '';
+
+                        return `
+                            <article class="post-card">
+                                <a href="${post.url}" class="post-date" target="_blank">${formattedDate}</a>
+                                ${title ? `<h2 class="post-title"><a href="${post.url}" target="_blank">${title}</a></h2>` : ''}
+                                <div class="post-content">${content}</div>
+                            </article>
+                            ${divider}
+                        `;
+                    }).join('');
+                })
+                .catch(err => {
+                    console.log('Error fetching blog posts:', err);
+                    document.getElementById('posts-container').innerHTML = '<p class="loading">Could not load posts</p>';
+                });
+        })();
+    </script>
+</body>
+</html>
