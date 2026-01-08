@@ -325,7 +325,6 @@
             border: 1px solid var(--magenta);
             border-radius: 4px;
             padding: 1rem;
-            max-width: 300px;
             width: 100%;
         }
 
@@ -405,7 +404,6 @@
             border: 1px solid var(--cyan);
             border-radius: 4px;
             padding: 1rem;
-            max-width: 300px;
             width: 100%;
         }
 
@@ -494,7 +492,6 @@
             border: 1px solid var(--cyan);
             border-radius: 4px;
             padding: 1rem;
-            max-width: 300px;
             width: 100%;
             display: flex;
             align-items: center;
@@ -582,7 +579,7 @@
                 </div>
             </div>
 
-            <!-- Bluesky Sidebar -->
+            <!-- Sidebar -->
             <aside class="bluesky-sidebar">
                 <!-- Weather Widget -->
                 <div class="weather-widget" id="weather-widget">
@@ -592,6 +589,25 @@
                     <span class="weather-desc">Loading...</span>
                 </div>
 
+                <!-- Now Playing Widget -->
+                <div class="now-playing-widget" id="now-playing-widget">
+                    <div class="widget-header">
+                        <span class="pixel-icon">♪</span>
+                        <span class="widget-label" id="playing-label">LAST PLAYED</span>
+                    </div>
+                    <div class="widget-content">
+                        <img id="album-art" src="" alt="Album Art" class="album-art">
+                        <div class="track-info">
+                            <div id="track-name" class="track-name">Loading...</div>
+                            <div id="artist-name" class="artist-name"></div>
+                        </div>
+                    </div>
+                    <a id="lastfm-link" href="https://www.last.fm/user/caseyswan" target="_blank" class="widget-link">
+                        VIEW ON LAST.FM →
+                    </a>
+                </div>
+
+                <!-- Bluesky Widget -->
                 <div class="bluesky-widget" id="bluesky-widget">
                     <div class="widget-header">
                         <svg class="bluesky-logo" viewBox="0 0 600 530" fill="#0085ff">
@@ -606,42 +622,20 @@
                         VIEW ON BLUESKY →
                     </a>
                 </div>
+
+                <!-- Currently Reading Widget -->
+                <div class="currently-reading-widget" id="reading-widget">
+                    <div class="widget-header">
+                        <span class="pixel-icon">📖</span>
+                        <span class="widget-label">CURRENTLY READING</span>
+                    </div>
+                    <div class="widget-content" id="book-content">
+                        <div class="loading">Loading...</div>
+                    </div>
+                </div>
             </aside>
         </div>
 
-        <div class="section-divider"></div>
-
-        <!-- Widgets -->
-        <div class="widgets-container">
-            <!-- Currently Reading Widget -->
-            <div class="currently-reading-widget" id="reading-widget">
-                <div class="widget-header">
-                    <span class="pixel-icon">📖</span>
-                    <span class="widget-label">CURRENTLY READING</span>
-                </div>
-                <div class="widget-content" id="book-content">
-                    <div class="loading">Loading...</div>
-                </div>
-            </div>
-
-            <!-- Last Played Widget -->
-            <div class="now-playing-widget" id="now-playing-widget">
-                <div class="widget-header">
-                    <span class="pixel-icon">♪</span>
-                    <span class="widget-label" id="playing-label">LAST PLAYED</span>
-                </div>
-                <div class="widget-content">
-                    <img id="album-art" src="" alt="Album Art" class="album-art">
-                    <div class="track-info">
-                        <div id="track-name" class="track-name">Loading...</div>
-                        <div id="artist-name" class="artist-name"></div>
-                    </div>
-                </div>
-                <a id="lastfm-link" href="https://www.last.fm/user/caseyswan" target="_blank" class="widget-link">
-                    VIEW ON LAST.FM →
-                </a>
-            </div>
-        </div>
     </main>
 
     <!-- Footer (rendered by components.js) -->
