@@ -27,9 +27,139 @@
 
         /* Main content - with padding for fixed nav */
         main {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 6rem 2rem 2rem 2rem;
+        }
+
+        /* Two-column blog layout */
+        .blog-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .posts-column {
+            min-width: 0;
+        }
+
+        /* Bluesky Sidebar */
+        .bluesky-sidebar {
+            position: sticky;
+            top: 5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .bluesky-widget {
+            background: var(--dark);
+            border: 1px solid #0085ff;
+            border-radius: 4px;
+            padding: 1rem;
+            width: 100%;
+        }
+
+        .bluesky-widget .widget-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .bluesky-widget .bluesky-logo {
+            width: 20px;
+            height: 20px;
+        }
+
+        .bluesky-widget .widget-label {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.65rem;
+            color: #0085ff;
+            letter-spacing: 2px;
+        }
+
+        .bluesky-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .bluesky-posts::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .bluesky-posts::-webkit-scrollbar-track {
+            background: var(--gray);
+        }
+
+        .bluesky-posts::-webkit-scrollbar-thumb {
+            background: #0085ff;
+            border-radius: 2px;
+        }
+
+        .bluesky-post {
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .bluesky-post:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .bluesky-post-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: var(--light);
+            margin-bottom: 0.5rem;
+        }
+
+        .bluesky-post-text a {
+            color: #0085ff;
+            text-decoration: none;
+        }
+
+        .bluesky-post-text a:hover {
+            text-decoration: underline;
+        }
+
+        .bluesky-post-date {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.5rem;
+            color: rgba(224, 224, 232, 0.5);
+            letter-spacing: 1px;
+        }
+
+        .bluesky-post-date a {
+            color: rgba(224, 224, 232, 0.5);
+            text-decoration: none;
+        }
+
+        .bluesky-post-date a:hover {
+            color: #0085ff;
+        }
+
+        .bluesky-widget .widget-link {
+            display: block;
+            margin-top: 0.75rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--gray);
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.55rem;
+            color: #0085ff;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .bluesky-widget .widget-link:hover {
+            color: var(--cyan);
         }
 
         /* Post cards - matching micro.blog exactly */
@@ -408,6 +538,21 @@
         }
 
         /* Responsive - blog-specific */
+        @media (max-width: 900px) {
+            .blog-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .bluesky-sidebar {
+                position: static;
+                order: -1;
+            }
+
+            .bluesky-posts {
+                max-height: 300px;
+            }
+        }
+
         @media (max-width: 768px) {
             main {
                 padding: 5rem 1rem 1rem 1rem;
@@ -428,23 +573,46 @@
     <nav id="site-nav" data-active="/blog/"></nav>
 
     <main>
-        <!-- Posts -->
-        <div id="posts-container">
-            <div class="loading">Loading posts...</div>
+        <!-- Two-column layout -->
+        <div class="blog-layout">
+            <!-- Posts Column -->
+            <div class="posts-column">
+                <div id="posts-container">
+                    <div class="loading">Loading posts...</div>
+                </div>
+            </div>
+
+            <!-- Bluesky Sidebar -->
+            <aside class="bluesky-sidebar">
+                <!-- Weather Widget -->
+                <div class="weather-widget" id="weather-widget">
+                    <span class="weather-icon">☀</span>
+                    <span class="weather-location">SF</span>
+                    <span class="weather-temp">--°</span>
+                    <span class="weather-desc">Loading...</span>
+                </div>
+
+                <div class="bluesky-widget" id="bluesky-widget">
+                    <div class="widget-header">
+                        <svg class="bluesky-logo" viewBox="0 0 600 530" fill="#0085ff">
+                            <path d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"/>
+                        </svg>
+                        <span class="widget-label">BLUESKY</span>
+                    </div>
+                    <div class="bluesky-posts" id="bluesky-posts">
+                        <div class="loading">Loading posts...</div>
+                    </div>
+                    <a href="https://bsky.app/profile/caseynewton.bsky.social" target="_blank" class="widget-link">
+                        VIEW ON BLUESKY →
+                    </a>
+                </div>
+            </aside>
         </div>
 
         <div class="section-divider"></div>
 
         <!-- Widgets -->
         <div class="widgets-container">
-            <!-- Weather Widget -->
-            <div class="weather-widget" id="weather-widget">
-                <span class="weather-icon">☀</span>
-                <span class="weather-location">SF</span>
-                <span class="weather-temp">--°</span>
-                <span class="weather-desc">Loading...</span>
-            </div>
-
             <!-- Currently Reading Widget -->
             <div class="currently-reading-widget" id="reading-widget">
                 <div class="widget-header">
@@ -513,6 +681,81 @@
                     const descEl = document.querySelector('.weather-desc');
                     if (descEl) descEl.textContent = '';
                 });
+        })();
+
+        // Fetch Bluesky Posts
+        (function() {
+            const BLUESKY_HANDLE = 'caseynewton.bsky.social';
+
+            fetch(`https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=${BLUESKY_HANDLE}&limit=10&filter=posts_no_replies`)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('bluesky-posts');
+                    const posts = data.feed || [];
+
+                    if (posts.length === 0) {
+                        container.innerHTML = '<div class="loading">No posts yet</div>';
+                        return;
+                    }
+
+                    container.innerHTML = posts.map(item => {
+                        const post = item.post;
+                        const record = post.record;
+                        const text = record.text || '';
+                        const createdAt = new Date(record.createdAt);
+                        const timeAgo = getTimeAgo(createdAt);
+
+                        // Convert URLs and mentions to links
+                        let htmlText = escapeHtml(text);
+
+                        // Link URLs
+                        htmlText = htmlText.replace(
+                            /(https?:\/\/[^\s]+)/g,
+                            '<a href="$1" target="_blank">$1</a>'
+                        );
+
+                        // Link @mentions
+                        htmlText = htmlText.replace(
+                            /@([a-zA-Z0-9.-]+)/g,
+                            '<a href="https://bsky.app/profile/$1" target="_blank">@$1</a>'
+                        );
+
+                        // Get post URL
+                        const postUri = post.uri;
+                        const postId = postUri.split('/').pop();
+                        const postUrl = `https://bsky.app/profile/${BLUESKY_HANDLE}/post/${postId}`;
+
+                        return `
+                            <div class="bluesky-post">
+                                <div class="bluesky-post-text">${htmlText}</div>
+                                <div class="bluesky-post-date">
+                                    <a href="${postUrl}" target="_blank">${timeAgo}</a>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                })
+                .catch(err => {
+                    console.log('Error fetching Bluesky posts:', err);
+                    document.getElementById('bluesky-posts').innerHTML = '<div class="loading">Could not load posts</div>';
+                });
+
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            function getTimeAgo(date) {
+                const seconds = Math.floor((new Date() - date) / 1000);
+
+                if (seconds < 60) return 'just now';
+                if (seconds < 3600) return Math.floor(seconds / 60) + 'm ago';
+                if (seconds < 86400) return Math.floor(seconds / 3600) + 'h ago';
+                if (seconds < 604800) return Math.floor(seconds / 86400) + 'd ago';
+
+                return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            }
         })();
 
         // Fetch Currently Reading
