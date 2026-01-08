@@ -51,6 +51,7 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            padding-top: 2.5rem;
         }
 
         .bluesky-widget {
@@ -160,6 +161,66 @@
 
         .bluesky-widget .widget-link:hover {
             color: var(--cyan);
+        }
+
+        /* Platformer Subscribe Widget */
+        .platformer-widget {
+            background: var(--dark);
+            border: 1px solid #2047FF;
+            border-radius: 4px;
+            padding: 1rem;
+            width: 100%;
+        }
+
+        .platformer-widget .widget-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .platformer-widget .platformer-logo {
+            width: 20px;
+            height: 20px;
+        }
+
+        .platformer-widget .widget-label {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.65rem;
+            color: #2047FF;
+            letter-spacing: 2px;
+        }
+
+        .platformer-widget .widget-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--light);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .platformer-widget .subscribe-btn {
+            display: block;
+            width: 100%;
+            padding: 0.6rem 1rem;
+            background: #2047FF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .platformer-widget .subscribe-btn:hover {
+            background: #1a3acc;
+            box-shadow: 0 0 15px rgba(32, 71, 255, 0.4);
         }
 
         /* Post cards - matching micro.blog exactly */
@@ -586,6 +647,22 @@
                     <span class="weather-location">SF</span>
                     <span class="weather-temp">--°</span>
                     <span class="weather-desc">Loading...</span>
+                </div>
+
+                <!-- Platformer Subscribe Widget -->
+                <div class="platformer-widget">
+                    <div class="widget-header">
+                        <svg class="platformer-logo" viewBox="0 0 200 200" fill="#2047FF">
+                            <path d="M93.8706 25L50.8715 35.7333L50.7344 102.486L41 102.28V164.894L59.1834 174.785L125.524 171.729V108.634H167.444V28.0568L93.8535 25H93.8706ZM55.6701 39.4942L89.072 31.1824V103.602L55.533 102.211L55.6701 39.4942ZM59.1834 168.672L45.5244 161.923V106.762L59.1834 108.119V168.654V168.672Z"/>
+                        </svg>
+                        <span class="widget-label">PLATFORMER</span>
+                    </div>
+                    <div class="widget-text">
+                        Get my tech newsletter delivered to your inbox
+                    </div>
+                    <a href="https://www.platformer.news/#/portal/signup" target="_blank" class="subscribe-btn">
+                        SUBSCRIBE FREE
+                    </a>
                 </div>
 
                 <!-- Now Playing Widget -->
