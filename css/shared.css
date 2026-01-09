@@ -9,6 +9,177 @@
     --gray: #1a1a24;
     --light: #e0e0e8;
     --pixel-size: 4px;
+
+    /* Light mode colors - deeper, more saturated for readability */
+    --cyan-light: #0077aa;
+    --magenta-light: #bb0088;
+    --bg-light: #f4f3f1;
+    --bg-lighter: #faf9f7;
+    --gray-light: #e8e7e5;
+    --text-dark: #1a1a1f;
+}
+
+/* Light mode theme */
+[data-theme="light"] {
+    --cyan: var(--cyan-light);
+    --magenta: var(--magenta-light);
+    --dark: var(--gray-light);
+    --darker: var(--bg-light);
+    --gray: var(--bg-lighter);
+    --light: var(--text-dark);
+}
+
+[data-theme="light"] body::before {
+    background-image:
+        linear-gradient(rgba(0, 119, 170, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 119, 170, 0.08) 1px, transparent 1px);
+}
+
+[data-theme="light"] body::after {
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.02) 2px,
+        rgba(0, 0, 0, 0.02) 4px
+    );
+    opacity: 0.5;
+}
+
+[data-theme="light"] nav {
+    background: linear-gradient(to bottom, var(--bg-light) 0%, transparent 100%);
+}
+
+[data-theme="light"] ::selection {
+    background: var(--cyan-light);
+    color: #fff;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    background: transparent;
+    border: 2px solid var(--cyan);
+    color: var(--cyan);
+    font-family: 'Silkscreen', cursive;
+    font-size: 0.65rem;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.theme-toggle:hover {
+    background: var(--cyan);
+    color: var(--darker);
+    box-shadow: 0 0 15px var(--cyan);
+}
+
+.theme-toggle::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: var(--cyan);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    transition: all 0.3s ease;
+}
+
+[data-theme="light"] .theme-toggle::before {
+    clip-path: circle(50% at 50% 50%);
+}
+
+.theme-toggle:hover::before {
+    background: var(--darker);
+}
+
+/* Pixel icon for toggle */
+.theme-icon {
+    width: 14px;
+    height: 14px;
+    position: relative;
+}
+
+.theme-icon-dark,
+.theme-icon-light {
+    position: absolute;
+    inset: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Moon icon (dark mode) - pixel art style */
+.theme-icon-dark::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    top: 1px;
+    left: 1px;
+}
+
+.theme-icon-dark::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--darker);
+    border-radius: 50%;
+    top: 0;
+    left: 4px;
+}
+
+[data-theme="light"] .theme-icon-dark::after {
+    background: var(--bg-light);
+}
+
+/* Sun icon (light mode) */
+.theme-icon-light::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: currentColor;
+    border-radius: 50%;
+    top: 4px;
+    left: 4px;
+}
+
+.theme-icon-light::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(currentColor, currentColor) center/2px 100%,
+        linear-gradient(currentColor, currentColor) center/100% 2px,
+        linear-gradient(currentColor, currentColor) center/2px 100%,
+        linear-gradient(currentColor, currentColor) center/100% 2px;
+    background-repeat: no-repeat;
+    transform: rotate(45deg) scale(0.7);
+}
+
+/* Show/hide icons based on theme */
+.theme-icon-dark {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+.theme-icon-light {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+
+[data-theme="light"] .theme-icon-dark {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+
+[data-theme="light"] .theme-icon-light {
+    opacity: 1;
+    transform: rotate(0deg);
 }
 
 * {

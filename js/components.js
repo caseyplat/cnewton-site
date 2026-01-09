@@ -48,9 +48,61 @@
         <a href="/" class="logo">cnewton.org</a>
         <div class="nav-links">
             ${linksHtml}
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <span class="theme-toggle-text">MODE</span>
+            </button>
         </div>
     `;
+
+        // Initialize theme toggle after nav is rendered
+        initThemeToggle();
     };
+
+    /**
+     * Initializes the theme toggle functionality
+     */
+    function initThemeToggle() {
+        const themeToggle = document.getElementById('theme-toggle');
+        if (!themeToggle) return;
+
+        const html = document.documentElement;
+
+        // Check for saved theme preference or system preference
+        function getPreferredTheme() {
+            const saved = localStorage.getItem('theme');
+            if (saved) return saved;
+            return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+
+        // Apply theme
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            const textEl = themeToggle.querySelector('.theme-toggle-text');
+            if (textEl) {
+                textEl.textContent = theme === 'light' ? 'DARK' : 'LIGHT';
+            }
+        }
+
+        // Initialize theme
+        setTheme(getPreferredTheme());
+
+        // Toggle on click
+        themeToggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            setTheme(current === 'light' ? 'dark' : 'light');
+        });
+
+        // Listen for system preference changes
+        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                setTheme(e.matches ? 'light' : 'dark');
+            }
+        });
+    }
+
+    // Expose initThemeToggle globally for pages with static nav
+    window.initThemeToggle = initThemeToggle;
 
     /**
      * Renders the footer
