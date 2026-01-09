@@ -5,8 +5,8 @@
 
     // Navigation links configuration
     const NAV_LINKS = [
-        { href: '/#bio', text: 'BIO', internal: true },
         { href: '/blog/', text: 'BLOG', internal: true },
+        { href: '/#bio', text: 'ABOUT', internal: true },
         { href: 'https://bsky.app/profile/caseynewton.bsky.social', text: 'BLUESKY' },
         { href: 'https://www.threads.net/@crumbler', text: 'THREADS' },
         { href: 'https://www.linkedin.com/in/caseynewton1/', text: 'LINKEDIN' },
