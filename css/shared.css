@@ -58,7 +58,7 @@
 /* Theme toggle button */
 .theme-toggle {
     background: transparent;
-    border: 2px solid var(--cyan);
+    border: none;
     color: var(--cyan);
     font-family: 'Silkscreen', cursive;
     font-size: 0.65rem;
