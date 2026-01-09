@@ -866,9 +866,7 @@
 
         // Fetch Platformer Latest Headline
         (function() {
-            const RSS_URL = 'https://www.platformer.news/rss/';
-
-            fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`)
+            fetch('/.netlify/functions/platformer-feed')
                 .then(response => response.json())
                 .then(data => {
                     if (data.items && data.items.length > 0) {
@@ -887,10 +885,7 @@
 
         // Fetch Hard Fork Latest Episode
         (function() {
-            // Using a CORS proxy to fetch the RSS feed
-            const RSS_URL = 'https://feeds.simplecast.com/l2i9YnTd';
-
-            fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`)
+            fetch('/.netlify/functions/hardfork-podcast')
                 .then(response => response.json())
                 .then(data => {
                     if (data.items && data.items.length > 0) {
