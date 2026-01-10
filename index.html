@@ -523,6 +523,27 @@
             box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
         }
 
+        /* YouTube subscribe button */
+        .youtube-subscribe {
+            display: inline-block;
+            padding: 0.75rem 1.25rem;
+            background: var(--magenta);
+            border: none;
+            color: var(--darker);
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .youtube-subscribe:hover {
+            background: var(--cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+        }
+
         @media (max-width: 480px) {
             .signup-form {
                 flex-direction: column;
@@ -1010,6 +1031,7 @@
                     <span class="posts-label posts-label-alt">RECENT EPISODES:</span>
                     <ul class="posts-list posts-list-alt"></ul>
                 </div>
+                <a href="https://www.youtube.com/hardfork?sub_confirmation=1" target="_blank" class="youtube-subscribe">SUBSCRIBE ON YOUTUBE</a>
                 <a href="https://www.nytimes.com/column/hard-fork" target="_blank" class="project-link">WATCH HARD FORK</a>
             </article>
         </div>
