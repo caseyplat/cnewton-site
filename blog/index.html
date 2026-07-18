@@ -1010,7 +1010,7 @@
                             <div class="bluesky-post">
                                 <div class="bluesky-post-text">${htmlText}</div>
                                 <div class="bluesky-post-date">
-                                    <a href="${postUrl}" target="_blank" rel="noopener">${timeAgo}</a>
+                                    <a href="${postUrl}" target="_blank" rel="noopener" aria-label="View post from ${timeAgo} on Bluesky">${timeAgo}</a>
                                 </div>
                             </div>
                         `;
@@ -1136,7 +1136,7 @@
 
                         return `
                             <article class="post-card">
-                                <a href="${post.url}" class="post-date" target="_blank" rel="noopener">${formattedDate}</a>
+                                <a href="${post.url}" class="post-date" target="_blank" rel="noopener" aria-label="View post from ${formattedDate} on blog.cnewton.org">${formattedDate}</a>
                                 ${title ? `<h2 class="post-title"><a href="${post.url}" target="_blank" rel="noopener">${title}</a></h2>` : ''}
                                 <div class="post-content">${content}</div>
                             </article>
