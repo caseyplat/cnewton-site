@@ -114,10 +114,8 @@
             font-weight: 800;
             line-height: 1;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--light) 0%, var(--cyan) 50%, var(--magenta) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            /* No background-clip:text here — the .tech-text spans clip themselves,
+               and nesting clipped layers under the animated glow ghosts in Chromium */
         }
 
         .tech-text {
@@ -127,11 +125,17 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        /* Glow must live on a plain wrapper: animating filter directly on a
+           background-clip:text element makes Chromium paint ghost copies of the glyphs */
+        .glow-wrap {
+            display: inline-block;
             animation: text-glow 6s ease-in-out infinite;
         }
 
         /* Offset animation timing for Newton */
-        .tech-text-alt {
+        .glow-wrap-alt {
             animation-delay: -3s;
         }
 
@@ -989,7 +993,7 @@
         <div class="hero-content">
             <div class="hero-text">
                 <span class="hero-label">JOURNALIST</span>
-                <h1><span class="tech-text">Casey</span><br><span class="tech-text tech-text-alt">Newton</span></h1>
+                <h1><span class="glow-wrap"><span class="tech-text">Casey</span></span><br><span class="glow-wrap glow-wrap-alt"><span class="tech-text">Newton</span></span></h1>
                 <p class="hero-subtitle">Platformer founder and Hard Fork co-host. Writing and podcasting about the intersection of technology, democracy, and AI. <a href="https://signal.me/#eu/JnqpZ8L9OdqPAacsZ4S7BTFjJh4P8EcqfMlsB9pjH9Ve-395dJdCpqbQjWwWGgOt" target="_blank" class="signal-link">Message me on Signal.</a></p>
             </div>
             <div class="hero-image">
