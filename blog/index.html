@@ -810,11 +810,11 @@
                         <span class="widget-label">PLATFORMER</span>
                     </div>
                     <div class="latest-label">Latest edition:</div>
-                    <a href="#" id="platformer-headline-link" class="platformer-headline" target="_blank">Loading...</a>
+                    <a href="#" id="platformer-headline-link" class="platformer-headline" target="_blank" rel="noopener">Loading...</a>
                     <div class="widget-text">
                         Get my tech newsletter delivered to your inbox
                     </div>
-                    <a href="https://www.platformer.news/#/portal/signup" target="_blank" class="subscribe-btn">
+                    <a href="https://www.platformer.news/#/portal/signup" target="_blank" rel="noopener" class="subscribe-btn">
                         SUBSCRIBE FREE
                     </a>
                 </div>
@@ -827,7 +827,7 @@
                     </div>
                     <div class="episode-title" id="hardfork-title">Loading...</div>
                     <div class="episode-date" id="hardfork-date"></div>
-                    <a id="hardfork-link" href="https://open.spotify.com/show/44fllCS2FTFr2x2kjP9xeT" target="_blank" class="listen-btn">
+                    <a id="hardfork-link" href="https://open.spotify.com/show/44fllCS2FTFr2x2kjP9xeT" target="_blank" rel="noopener" class="listen-btn">
                         LISTEN ON SPOTIFY
                     </a>
                 </div>
@@ -845,7 +845,7 @@
                             <div id="artist-name" class="artist-name"></div>
                         </div>
                     </div>
-                    <a id="lastfm-link" href="https://www.last.fm/user/caseyswan" target="_blank" class="widget-link">
+                    <a id="lastfm-link" href="https://www.last.fm/user/caseyswan" target="_blank" rel="noopener" class="widget-link">
                         VIEW ON LAST.FM →
                     </a>
                 </div>
@@ -861,7 +861,7 @@
                     <div class="bluesky-posts" id="bluesky-posts">
                         <div class="loading">Loading posts...</div>
                     </div>
-                    <a href="https://bsky.app/profile/caseynewton.bsky.social" target="_blank" class="widget-link">
+                    <a href="https://bsky.app/profile/caseynewton.bsky.social" target="_blank" rel="noopener" class="widget-link">
                         VIEW ON BLUESKY →
                     </a>
                 </div>
@@ -992,13 +992,13 @@
                         // Link URLs
                         htmlText = htmlText.replace(
                             /(https?:\/\/[^\s]+)/g,
-                            '<a href="$1" target="_blank">$1</a>'
+                            '<a href="$1" target="_blank" rel="noopener">$1</a>'
                         );
 
                         // Link @mentions
                         htmlText = htmlText.replace(
                             /@([a-zA-Z0-9.-]+)/g,
-                            '<a href="https://bsky.app/profile/$1" target="_blank">@$1</a>'
+                            '<a href="https://bsky.app/profile/$1" target="_blank" rel="noopener">@$1</a>'
                         );
 
                         // Get post URL
@@ -1010,7 +1010,7 @@
                             <div class="bluesky-post">
                                 <div class="bluesky-post-text">${htmlText}</div>
                                 <div class="bluesky-post-date">
-                                    <a href="${postUrl}" target="_blank">${timeAgo}</a>
+                                    <a href="${postUrl}" target="_blank" rel="noopener">${timeAgo}</a>
                                 </div>
                             </div>
                         `;
@@ -1057,6 +1057,7 @@
                         const link = document.createElement('a');
                         link.href = `https://micro.blog/books/${book.isbn}`;
                         link.target = '_blank';
+                        link.rel = 'noopener';
                         link.className = 'widget-link';
                         link.textContent = 'VIEW ON MICRO.BLOG →';
                         widget.appendChild(link);
@@ -1135,8 +1136,8 @@
 
                         return `
                             <article class="post-card">
-                                <a href="${post.url}" class="post-date" target="_blank">${formattedDate}</a>
-                                ${title ? `<h2 class="post-title"><a href="${post.url}" target="_blank">${title}</a></h2>` : ''}
+                                <a href="${post.url}" class="post-date" target="_blank" rel="noopener">${formattedDate}</a>
+                                ${title ? `<h2 class="post-title"><a href="${post.url}" target="_blank" rel="noopener">${title}</a></h2>` : ''}
                                 <div class="post-content">${content}</div>
                             </article>
                             ${divider}

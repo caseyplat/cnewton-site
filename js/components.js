@@ -39,7 +39,7 @@
         const linksHtml = NAV_LINKS.map(link => {
             const isActive = link.internal && activePath.startsWith(link.href.replace('/#', '/').replace('#', '/'));
             const activeClass = isActive ? ' class="nav-active"' : '';
-            const target = link.internal ? '' : ' target="_blank"';
+            const target = link.internal ? '' : ' target="_blank" rel="noopener"';
             return `<a href="${link.href}"${activeClass}${target}>${link.text}</a>`;
         }).join('\n            ');
 
@@ -122,9 +122,10 @@
 
         let html = '';
         if (showLinks) {
-            const linksHtml = FOOTER_LINKS.map(link =>
-                `<a href="${link.href}" target="_blank" class="footer-link">${link.text}</a>`
-            ).join('\n            ');
+            const linksHtml = FOOTER_LINKS.map(link => {
+                const target = link.href.startsWith('mailto:') ? '' : ' target="_blank" rel="noopener"';
+                return `<a href="${link.href}"${target} class="footer-link">${link.text}</a>`;
+            }).join('\n            ');
             html += `
         <div class="footer-links">
             ${linksHtml}
