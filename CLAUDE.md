@@ -17,6 +17,11 @@ Personal website for Casey Newton, tech journalist.
 cnewton-site/
 ├── index.html           # Homepage (substantial inline CSS + JavaScript)
 ├── about/index.html     # Biography, press photo, and public contact page
+├── work/index.html      # Generated static Selected Work page
+├── data/
+│   └── selected-work.json  # Source of truth for Selected Work entries
+├── scripts/
+│   └── render_selected_work.py  # Renders and validates the work list
 ├── css/shared.css       # Design tokens and styles shared across site pages
 ├── netlify/functions/   # Serverless functions proxying homepage feeds
 │   ├── platformer-feed.js
@@ -35,6 +40,12 @@ cnewton-site/
 
 - Netlify Functions do not run under a basic static server; failed function
   requests during that kind of preview are expected.
+- After editing `data/selected-work.json`, render and validate the static page:
+
+  ```
+  python3 scripts/render_selected_work.py
+  python3 scripts/render_selected_work.py --check
+  ```
 
 ## Hosting and deployment
 

@@ -1,0 +1,84 @@
+[
+  {
+    "title": "The Trauma Floor",
+    "publication": "The Verge",
+    "date": "2019-02-25",
+    "url": "https://www.theverge.com/2019/2/25/18229714/cognizant-facebook-content-moderator-interviews-trauma-working-conditions-arizona",
+    "category": "Investigation",
+    "description": "An investigation into the working conditions and psychological toll facing Facebook’s contract content moderators in Phoenix."
+  },
+  {
+    "title": "Bodies in Seats",
+    "publication": "The Verge",
+    "date": "2019-06-19",
+    "url": "https://www.theverge.com/2019/6/19/18681845/facebook-moderator-interviews-video-trauma-ptsd-cognizant-tampa",
+    "category": "Investigation",
+    "description": "Former Facebook moderators in Tampa break their nondisclosure agreements to describe desperate and dangerous working conditions."
+  },
+  {
+    "title": "Speak, Memory",
+    "publication": "The Verge",
+    "date": "2016-10-06",
+    "url": "https://www.theverge.com/a/luka-artificial-intelligence-memorial-roman-mazurenko-bot",
+    "category": "AI & Humanity",
+    "description": "After her best friend died, Eugenia Kuyda used his messages to build an artificial-intelligence memorial that could speak in his voice."
+  },
+  {
+    "title": "What really happened at Basecamp",
+    "publication": "Platformer",
+    "date": "2021-04-27",
+    "url": "https://www.platformer.news/-what-really-happened-at-basecamp/",
+    "category": "Workplace",
+    "description": "How a list of “funny” customer names triggered an internal reckoning and a company-wide ban on political discussions."
+  },
+  {
+    "title": "The mess at Medium",
+    "publication": "Platformer",
+    "date": "2021-03-24",
+    "url": "https://www.platformer.news/-the-mess-at-medium/",
+    "category": "Investigation",
+    "description": "Fourteen current and former employees explain how a celebrated experiment in digital publishing lost its way."
+  },
+  {
+    "title": "The withering email that got an ethical AI researcher fired at Google",
+    "publication": "Platformer",
+    "date": "2020-12-03",
+    "url": "https://www.platformer.news/the-withering-email-that-got-an-ethical/",
+    "category": "AI & Labor",
+    "description": "Timnit Gebru’s final message to her colleagues reveals the conflict that preceded her dismissal from Google’s ethical AI team."
+  },
+  {
+    "title": "Twitter, cut in half",
+    "publication": "Platformer",
+    "date": "2022-11-04",
+    "url": "https://www.platformer.news/twitter-cut-in-half/",
+    "category": "Breaking News",
+    "description": "A day-one account of Elon Musk’s mass layoffs and the workers left to keep the platform running.",
+    "credit": "With Zoë Schiffer"
+  },
+  {
+    "title": "Yes, Elon Musk created a special system for showing you all his tweets first",
+    "publication": "Platformer",
+    "date": "2023-02-14",
+    "url": "https://www.platformer.news/yes-elon-musk-created-a-special-system/",
+    "category": "Platform Power",
+    "description": "A document-supported account of how Twitter altered its systems to boost its owner’s posts.",
+    "credit": "With Zoë Schiffer"
+  },
+  {
+    "title": "Inside Discord’s reform movement for banned users",
+    "publication": "Platformer",
+    "date": "2023-10-19",
+    "url": "https://www.platformer.news/inside-discords-reform-movement-for/",
+    "category": "Content Moderation",
+    "description": "Inside Discord’s effort to replace blanket permanent bans with more proportional punishment and user rehabilitation."
+  },
+  {
+    "title": "OpenAI’s alignment problem",
+    "publication": "Platformer",
+    "date": "2023-11-20",
+    "url": "https://www.platformer.news/openais-alignment-problem/",
+    "category": "AI Governance",
+    "description": "What Sam Altman’s firing revealed about the unresolved tension between OpenAI’s nonprofit mission and commercial ambitions."
+  }
+]

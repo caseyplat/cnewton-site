@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selected Work — Casey Newton</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://cnewton.org/work/">
+
+    <meta name="description" content="Selected reporting and analysis by Casey Newton on technology, power, democracy, labor, and artificial intelligence.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cnewton.org/work/">
+    <meta property="og:title" content="Selected Work — Casey Newton">
+    <meta property="og:description" content="Selected reporting and analysis by Casey Newton on technology, power, democracy, labor, and artificial intelligence.">
+    <meta property="og:image" content="https://cnewton.org/headshot.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Selected Work — Casey Newton">
+    <meta name="twitter:description" content="Selected reporting and analysis by Casey Newton on technology, power, democracy, labor, and artificial intelligence.">
+    <meta name="twitter:image" content="https://cnewton.org/headshot.jpg">
+
+    <script>
+        // Apply the shared preference before styles load to avoid a theme flash.
+        (() => {
+            const prefix = 'cnewton-theme=';
+            const cookie = document.cookie
+                .split('; ')
+                .find(row => row.startsWith(prefix));
+            const shared = cookie ? cookie.slice(prefix.length) : null;
+            let saved = null;
+            try {
+                saved = localStorage.getItem('theme');
+            } catch (error) {
+                // Keep the light default when storage is unavailable.
+            }
+            const theme = shared === 'light' || shared === 'dark'
+                ? shared
+                : saved === 'light' || saved === 'dark'
+                    ? saved
+                    : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.style.colorScheme = theme;
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/shared.css">
+    <style>
+        .work-page {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 10rem 3rem 6rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .work-header {
+            margin-bottom: 4rem;
+        }
+
+        .work-label {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--magenta);
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+        }
+
+        .work-label::before {
+            content: '>';
+            margin-right: 8px;
+        }
+
+        .work-page h1 {
+            margin-bottom: 1rem;
+            color: var(--light);
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .work-intro {
+            max-width: 700px;
+            color: rgba(224, 224, 232, 0.7);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .work-list {
+            list-style: none;
+            counter-reset: selected-work;
+        }
+
+        .work-item {
+            counter-increment: selected-work;
+            display: grid;
+            grid-template-columns: 3.5rem minmax(0, 1fr);
+            gap: 1.5rem;
+            padding: 2.5rem 0;
+            position: relative;
+        }
+
+        .work-item::before {
+            content: counter(selected-work, decimal-leading-zero);
+            padding-top: 0.2rem;
+            color: var(--magenta);
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+        }
+
+        .work-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--cyan), var(--magenta), transparent);
+            opacity: 0.4;
+        }
+
+        .work-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            color: rgba(224, 224, 232, 0.55);
+            font-size: 0.72rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .work-category {
+            color: var(--cyan);
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.62rem;
+            letter-spacing: 1px;
+        }
+
+        .work-credit {
+            flex-basis: 100%;
+            color: rgba(224, 224, 232, 0.7);
+            text-transform: none;
+        }
+
+        .work-item h2 {
+            margin-bottom: 0.75rem;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+            font-weight: 800;
+            line-height: 1.15;
+        }
+
+        .work-item h2 a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.25s ease, text-shadow 0.25s ease;
+        }
+
+        .work-item h2 a::after {
+            content: ' ↗';
+            color: var(--cyan);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.55em;
+            vertical-align: top;
+        }
+
+        .work-item h2 a:hover {
+            color: var(--cyan);
+            text-shadow: 0 0 16px rgba(0, 255, 255, 0.28);
+        }
+
+        .work-item p {
+            max-width: 760px;
+            color: rgba(224, 224, 232, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.75;
+        }
+
+        .back-home {
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            margin-top: 2rem;
+            color: var(--cyan);
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+
+        .back-home::before {
+            content: '←';
+        }
+
+        .back-home:hover {
+            gap: 16px;
+        }
+
+        [data-theme="light"] .work-intro,
+        [data-theme="light"] .work-item p {
+            color: #3a3a42;
+        }
+
+        [data-theme="light"] .work-meta,
+        [data-theme="light"] .work-credit {
+            color: #5b5b64;
+        }
+
+        [data-theme="light"] .footer-copy {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 968px) {
+            .work-page {
+                padding: 12rem 1.5rem 4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .work-page {
+                padding: 11rem 1rem 3rem;
+            }
+
+            .work-item {
+                grid-template-columns: 2rem minmax(0, 1fr);
+                gap: 0.75rem;
+                padding: 2rem 0;
+            }
+
+            .work-meta {
+                gap: 0.35rem;
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .work-item h2 a,
+            .back-home {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">cnewton.org</a>
+        <div class="nav-links">
+            <a href="https://blog.cnewton.org/">BLOG</a>
+            <a href="/about/">ABOUT</a>
+            <a href="https://bsky.app/profile/caseynewton.bsky.social" target="_blank" rel="noopener">BLUESKY</a>
+            <a href="https://www.threads.net/@crumbler" target="_blank" rel="noopener">THREADS</a>
+            <a href="https://www.linkedin.com/in/caseynewton1/" target="_blank" rel="noopener">LINKEDIN</a>
+            <a href="https://signal.me/#eu/JnqpZ8L9OdqPAacsZ4S7BTFjJh4P8EcqfMlsB9pjH9Ve-395dJdCpqbQjWwWGgOt" target="_blank" rel="noopener">SIGNAL</a>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <span class="theme-toggle-text">MODE</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="work-page">
+        <header class="work-header">
+            <span class="work-label">SELECTED WORK</span>
+            <h1>Reporting &amp; Analysis</h1>
+            <p class="work-intro">Selected stories about technology, power, democracy, labor, and artificial intelligence.</p>
+        </header>
+
+        <ol class="work-list">
+        <!-- BEGIN GENERATED SELECTED WORK ITEMS -->
+            <li class="work-item">
+                <article>
+                    <div class="work-meta">
+                        <span class="work-category">Investigation</span>
+                        <span aria-hidden="true">·</span>
+                        <span>The Verge</span>
+                        <span aria-hidden="true">·</span>
+                        <time datetime="2019-02-25">February 25, 2019</time>
+                    </div>
+                    <h2><a href="https://www.theverge.com/2019/2/25/18229714/cognizant-facebook-content-moderator-interviews-trauma-working-conditions-arizona" target="_blank" rel="noopener" aria-label="The Trauma Floor — The Verge (opens in a new tab)">The Trauma Floor</a></h2>
+                    <p>An investigation into the working conditions and psychological toll facing Facebook’s contract content moderators in Phoenix.</p>
+                </article>
+            </li>
+            <li class="work-item">
+                <article>
+                    <div class="work-meta">
+                        <span class="work-category">Investigation</span>
+                        <span aria-hidden="true">·</span>
+                        <span>The Verge</span>
+                        <span aria-hidden="true">·</span>
+                        <time datetime="2019-06-19">June 19, 2019</time>
+                    </div>
+                    <h2><a href="https://www.theverge.com/2019/6/19/18681845/facebook-moderator-interviews-video-trauma-ptsd-cognizant-tampa" target="_blank" rel="noopener" aria-label="Bodies in Seats — The Verge (opens in a new tab)">Bodies in Seats</a></h2>
+                    <p>Former Facebook moderators in Tampa break their nondisclosure agreements to describe desperate and dangerous working conditions.</p>
+                </article>
+            </li>
+            <li class="work-item">
+                <article>
+                    <div class="work-meta">
+                        <span class="work-category">AI &amp; Humanity</span>
+                        <span aria-hidden="true">·</span>
+                        <span>The Verge</span>
+                        <span aria-hidden="true">·</span>
+                        <time datetime="2016-10-06">October 6, 2016</time>
+                    </div>
+                    <h2><a href="https://www.theverge.com/a/luka-artificial-intelligence-memorial-roman-mazurenko-bot" target="_blank" rel="noopener" aria-label="Speak, Memory — The Verge (opens in a new tab)">Speak, Memory</a></h2>
+                    <p>After her best friend died, Eugenia Kuyda used his messages to build an artificial-intelligence memorial that could speak in his voice.</p>
+                </article>
+            </li>
+            <li class="work-item">
+                <article>
+                    <div class="work-meta">
+                        <span class="work-category">Workplace</span>
+                        <span aria-hidden="true">·</span>
+                        <span>Platformer</span>
+                        <span aria-hidden="true">·</span>
+                        <time datetime="2021-04-27">April 27, 2021</time>
+                    </div>
+                    <h2><a href="https://www.platformer.news/-what-really-happened-at-basecamp/" target="_blank" rel="noopener" aria-label="What really happened at Basecamp — Platformer (opens in a new tab)">What really happened at Basecamp</a></h2>
+                    <p>How a list of “funny” customer names triggered an internal reckoning and a company-wide ban on political discussions.</p>
+                </article>
+            </li>
+            <li class="work-item">
+                <article>
+                    <div class="work-meta">
+                        <span class="work-category">Investigation</span>
+                        <span aria-hidden="true">·</span>
+                        <span>Platformer</span>
+                        <span aria-hidden="true">·</span>
+                        <time datetime="2021-03-24">March 24, 2021</time>
+                    </div>
+                    <h2><a href="https://www.platformer.news/-the-mess-at-medium/" target="_blank" rel="noopener" aria-label="The mess at Medium — Platformer (opens in a new tab)">The mess at Medium</a></h2>
+                    <p>Fourteen current and former employees explain how a celebrated experiment in digital publishing lost its way.</p>
+                </article>
+            </li>
+            <li class="work-item">
+                <article>
+                    <div class="work-meta">
+                        <span class="work-category">AI &amp; Labor</span>
+                        <span aria-hidden="true">·</span>
+                        <span>Platformer</span>
+                        <span aria-hidden="true">·</span>
+                        <time datetime="2020-12-03">December 3, 2020</time>
+                    </div>
+                    <h2><a href="https://www.platformer.news/the-withering-email-that-got-an-ethical/" target="_blank" rel="noopener" aria-label="The withering email that got an ethical AI researcher fired at Google — Platformer (opens in a new tab)">The withering email that got an ethical AI researcher fired at Google</a></h2>
+                    <p>Timnit Gebru’s final message to her colleagues reveals the conflict that preceded her dismissal from Google’s ethical AI team.</p>
+                </article>
+            </li>
+            <li class="work-item">
+                <article>
+                    <div class="work-meta">
+                        <span class="work-category">Breaking News</span>
+                        <span aria-hidden="true">·</span>
+                        <span>Platformer</span>
+                        <span aria-hidden="true">·</span>
+                        <time datetime="2022-11-04">November 4, 2022</time>
+                        <span class="work-credit">With Zoë Schiffer</span>
+                    </div>
+                    <h2><a href="https://www.platformer.news/twitter-cut-in-half/" target="_blank" rel="noopener" aria-label="Twitter, cut in half — Platformer (opens in a new tab)">Twitter, cut in half</a></h2>
+                    <p>A day-one account of Elon Musk’s mass layoffs and the workers left to keep the platform running.</p>
+                </article>
+            </li>
+            <li class="work-item">
+                <article>
+                    <div class="work-meta">
+                        <span class="work-category">Platform Power</span>
+                        <span aria-hidden="true">·</span>
+                        <span>Platformer</span>
+                        <span aria-hidden="true">·</span>
+                        <time datetime="2023-02-14">February 14, 2023</time>
+                        <span class="work-credit">With Zoë Schiffer</span>
+                    </div>
+                    <h2><a href="https://www.platformer.news/yes-elon-musk-created-a-special-system/" target="_blank" rel="noopener" aria-label="Yes, Elon Musk created a special system for showing you all his tweets first — Platformer (opens in a new tab)">Yes, Elon Musk created a special system for showing you all his tweets first</a></h2>
+                    <p>A document-supported account of how Twitter altered its systems to boost its owner’s posts.</p>
+                </article>
+            </li>
+            <li class="work-item">
+                <article>
+                    <div class="work-meta">
+                        <span class="work-category">Content Moderation</span>
+                        <span aria-hidden="true">·</span>
+                        <span>Platformer</span>
+                        <span aria-hidden="true">·</span>
+                        <time datetime="2023-10-19">October 19, 2023</time>
+                    </div>
+                    <h2><a href="https://www.platformer.news/inside-discords-reform-movement-for/" target="_blank" rel="noopener" aria-label="Inside Discord’s reform movement for banned users — Platformer (opens in a new tab)">Inside Discord’s reform movement for banned users</a></h2>
+                    <p>Inside Discord’s effort to replace blanket permanent bans with more proportional punishment and user rehabilitation.</p>
+                </article>
+            </li>
+            <li class="work-item">
+                <article>
+                    <div class="work-meta">
+                        <span class="work-category">AI Governance</span>
+                        <span aria-hidden="true">·</span>
+                        <span>Platformer</span>
+                        <span aria-hidden="true">·</span>
+                        <time datetime="2023-11-20">November 20, 2023</time>
+                    </div>
+                    <h2><a href="https://www.platformer.news/openais-alignment-problem/" target="_blank" rel="noopener" aria-label="OpenAI’s alignment problem — Platformer (opens in a new tab)">OpenAI’s alignment problem</a></h2>
+                    <p>What Sam Altman’s firing revealed about the unresolved tension between OpenAI’s nonprofit mission and commercial ambitions.</p>
+                </article>
+            </li>
+        <!-- END GENERATED SELECTED WORK ITEMS -->
+        </ol>
+
+        <a href="/" class="back-home">BACK TO HOME</a>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.platformer.news/" target="_blank" rel="noopener" class="footer-link">PLATFORMER</a>
+            <a href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener" class="footer-link">HARD FORK</a>
+            <a href="mailto:casey@platformer.news" class="footer-link">CONTACT</a>
+        </div>
+        <p class="footer-copy">© 2026 Casey Newton <span>_</span></p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const themeCookieName = 'cnewton-theme';
+
+        function getSharedTheme() {
+            const prefix = `${themeCookieName}=`;
+            const cookie = document.cookie
+                .split('; ')
+                .find(row => row.startsWith(prefix));
+            return cookie ? cookie.slice(prefix.length) : null;
+        }
+
+        function getPreferredTheme() {
+            const shared = getSharedTheme();
+            if (shared === 'light' || shared === 'dark') return shared;
+            const saved = localStorage.getItem('theme');
+            if (saved === 'light' || saved === 'dark') return saved;
+            return 'light';
+        }
+
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            document.cookie = `${themeCookieName}=${theme}; Max-Age=31536000; Path=/; Domain=cnewton.org; SameSite=Lax; Secure`;
+            themeToggle.querySelector('.theme-toggle-text').textContent = theme === 'light' ? 'DARK' : 'LIGHT';
+        }
+
+        setTheme(getPreferredTheme());
+
+        themeToggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            setTheme(current === 'light' ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>
