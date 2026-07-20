@@ -20,6 +20,30 @@
     <meta name="twitter:description" content="Platformer founder and Hard Fork co-host. Writing and podcasting about the intersection of technology, democracy, and AI.">
     <meta name="twitter:image" content="https://cnewton.org/headshot.jpg">
 
+    <script>
+        // Apply the shared preference before styles load to avoid a theme flash.
+        (() => {
+            const prefix = 'cnewton-theme=';
+            const cookie = document.cookie
+                .split('; ')
+                .find(row => row.startsWith(prefix));
+            const shared = cookie ? cookie.slice(prefix.length) : null;
+            let saved = null;
+            try {
+                saved = localStorage.getItem('theme');
+            } catch (error) {
+                // Keep the light default when storage is unavailable.
+            }
+            const theme = shared === 'light' || shared === 'dark'
+                ? shared
+                : saved === 'light' || saved === 'dark'
+                    ? saved
+                    : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.style.colorScheme = theme;
+        })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1292,18 +1316,31 @@
         // Theme toggle functionality
         const themeToggle = document.getElementById('theme-toggle');
         const html = document.documentElement;
+        const themeCookieName = 'cnewton-theme';
 
-        // Check for saved theme preference or system preference
+        // Share the theme preference with blog.cnewton.org.
+        function getSharedTheme() {
+            const prefix = `${themeCookieName}=`;
+            const cookie = document.cookie
+                .split('; ')
+                .find(row => row.startsWith(prefix));
+            return cookie ? cookie.slice(prefix.length) : null;
+        }
+
+        // Prefer the shared choice, then the legacy local preference, then light.
         function getPreferredTheme() {
+            const shared = getSharedTheme();
+            if (shared === 'light' || shared === 'dark') return shared;
             const saved = localStorage.getItem('theme');
-            if (saved) return saved;
-            return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            if (saved === 'light' || saved === 'dark') return saved;
+            return 'light';
         }
 
         // Apply theme
         function setTheme(theme) {
             html.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
+            document.cookie = `${themeCookieName}=${theme}; Max-Age=31536000; Path=/; Domain=cnewton.org; SameSite=Lax; Secure`;
             themeToggle.querySelector('.theme-toggle-text').textContent = theme === 'light' ? 'DARK' : 'LIGHT';
         }
 
@@ -1314,13 +1351,6 @@
         themeToggle.addEventListener('click', () => {
             const current = html.getAttribute('data-theme');
             setTheme(current === 'light' ? 'dark' : 'light');
-        });
-
-        // Listen for system preference changes
-        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
-            if (!localStorage.getItem('theme')) {
-                setTheme(e.matches ? 'light' : 'dark');
-            }
         });
     </script>
 </body>

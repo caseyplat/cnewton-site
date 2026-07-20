@@ -4,16 +4,15 @@
 [functions]
   node_bundler = "esbuild"
 
-# Temporary redirect while retiring the /blog/ mirror; switch to 301 once tested.
-# force = true is required so the still-present blog/index.html does not shadow it.
+# Permanent redirect from the retired /blog/ mirror to the canonical Micro.blog site.
 [[redirects]]
   from = "/blog"
   to = "https://blog.cnewton.org/"
-  status = 302
+  status = 301
   force = true
 
 [[redirects]]
   from = "/blog/*"
   to = "https://blog.cnewton.org/"
-  status = 302
+  status = 301
   force = true

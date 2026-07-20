@@ -15,16 +15,11 @@ Personal website for Casey Newton, tech journalist.
 
 ```
 cnewton-site/
-├── index.html           # Homepage (substantial inline CSS + JS)
-├── blog/index.html      # Custom blog page (substantial inline CSS + JS)
-├── css/shared.css       # Shared design tokens, nav/footer styles
-├── js/components.js     # Shared nav, footer, and theme behavior (used by blog)
-├── netlify/functions/   # Serverless functions proxying external feeds/APIs
+├── index.html           # Homepage (substantial inline CSS + JavaScript)
+├── css/shared.css       # Design tokens and shared homepage styles
+├── netlify/functions/   # Serverless functions proxying homepage feeds
 │   ├── platformer-feed.js
-│   ├── hardfork-feed.js
-│   ├── hardfork-podcast.js
-│   └── lastfm.js
-├── data/book.json       # Manually maintained currently-reading widget data
+│   └── hardfork-feed.js
 ├── netlify.toml         # Netlify Functions directory config
 ├── headshot.jpg, favicon.svg, platformer-logo.svg, hardfork-logo.png
 ```
@@ -56,9 +51,13 @@ cnewton-site/
 - `blog.cnewton.org` is the canonical blog, hosted by Micro.blog. It is not
   generated from this repository. Individual posts, the RSS feed, JSON Feed,
   sitemap, robots.txt, and post canonical metadata are served there.
-- `cnewton.org/blog/` is a client-side mirror that fetches
-  `https://blog.cnewton.org/feed.json`; individual post links lead to
-  blog.cnewton.org.
+- `cnewton.org/blog/` and paths beneath it permanently redirect to
+  `https://blog.cnewton.org/` through `netlify.toml`.
+- The Micro.blog custom theme is maintained through Micro.blog's theme editor,
+  not in this repository.
+- The main site and blog share the `cnewton-theme` cookie across subdomains so
+  a visitor's light or dark choice follows them between the two sites. With no
+  saved choice, both sites default to light.
 - Micro.blog cannot directly publish the blog at the `cnewton.org/blog/`
   subdirectory. Do not implement HTML scraping or an unapproved reverse-proxy
   workaround.
@@ -71,16 +70,7 @@ The site uses or may call:
 
 - Platformer RSS (via Netlify Function)
 - Hard Fork's YouTube feed (via Netlify Function)
-- Hard Fork's Simplecast RSS feed (via Netlify Function)
-- Last.fm (via Netlify Function)
-- Micro.blog's JSON Feed
-- Bluesky's public API
-- wttr.in weather
 - Google Fonts
-
-`LASTFM_API_KEY` is configured externally in Netlify. It must never be written
-into the repository, printed in output, or exposed to browser-side code. Do not
-expose environment-variable values or secrets.
 
 Optional external services should degrade cleanly: a failure in a feed, API, or
 widget must not prevent the site's primary static content from rendering.
@@ -102,7 +92,7 @@ widget must not prevent the site's primary static content from rendering.
 
 **Visual style:** Cyberpunk/retro aesthetic with pixel decorations, gradient
 borders, cursor trails, and hover animations. The site has light and dark
-themes (`data-theme` handled in `js/components.js`).
+themes (`data-theme` handled in `index.html`) and defaults to light.
 
 ## Testing and verification
 
@@ -110,7 +100,7 @@ themes (`data-theme` handled in `js/components.js`).
   `node --check`) and manually inspect the affected pages in a browser.
 - Test both light and dark themes where relevant.
 - Test desktop and narrow mobile layouts where relevant (breakpoints at 968px
-  and 480px in shared.css; blog and homepage also use others inline).
+  and 480px in shared.css; the homepage also uses others inline).
 - Keep animations performant.
 - Inspect `git diff` before declaring a task complete.
 
