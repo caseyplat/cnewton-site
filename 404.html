@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <title>Page Not Found — Casey Newton</title>
+    <meta name="description" content="The page you requested could not be found on Casey Newton’s website.">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="Casey Newton’s blog" href="https://blog.cnewton.org/feed.xml">
+    <link rel="alternate" type="application/feed+json" title="Casey Newton’s blog" href="https://blog.cnewton.org/feed.json">
+
+    <script>
+        // Apply the shared preference before styles load to avoid a theme flash.
+        (() => {
+            const prefix = 'cnewton-theme=';
+            const cookie = document.cookie
+                .split('; ')
+                .find(row => row.startsWith(prefix));
+            const shared = cookie ? cookie.slice(prefix.length) : null;
+            let saved = null;
+            try {
+                saved = localStorage.getItem('theme');
+            } catch (error) {
+                // Keep the light default when storage is unavailable.
+            }
+            const theme = shared === 'light' || shared === 'dark'
+                ? shared
+                : saved === 'light' || saved === 'dark'
+                    ? saved
+                    : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.style.colorScheme = theme;
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/shared.css">
+    <style>
+        .not-found-page {
+            min-height: calc(100vh - 12rem);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 12rem 3rem 7rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .error-code {
+            margin-bottom: 1rem;
+            color: var(--magenta);
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+        }
+
+        .not-found-page h1 {
+            max-width: 760px;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.75rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .error-copy {
+            max-width: 620px;
+            margin-bottom: 2.5rem;
+            color: var(--light);
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.72;
+        }
+
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+        }
+
+        .error-link {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--cyan);
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .error-link::after {
+            content: '→';
+            transition: transform 0.2s ease;
+        }
+
+        .error-link:hover::after {
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 480px) {
+            .not-found-page {
+                padding: 10rem 1.5rem 5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">SKIP TO CONTENT</a>
+
+    <nav>
+        <a href="/" class="logo">cnewton.org</a>
+        <div class="nav-links">
+            <a href="https://blog.cnewton.org/">BLOG</a>
+            <a href="/work/">WORK</a>
+            <a href="/about/">ABOUT</a>
+            <a href="https://signal.me/#eu/JnqpZ8L9OdqPAacsZ4S7BTFjJh4P8EcqfMlsB9pjH9Ve-395dJdCpqbQjWwWGgOt" target="_blank" rel="noopener">SIGNAL</a>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+                <span class="theme-toggle-text">DARK</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="not-found-page" id="main-content">
+        <p class="error-code">ERROR 404</p>
+        <h1>This page doesn’t exist.</h1>
+        <p class="error-copy">The address may be outdated, or the page may have moved. Try one of the current destinations below.</p>
+        <div class="error-actions">
+            <a href="/" class="error-link">GO HOME</a>
+            <a href="/work/" class="error-link">SELECTED WORK</a>
+            <a href="https://blog.cnewton.org/" class="error-link">READ THE BLOG</a>
+        </div>
+    </main>
+
+    <footer>
+        <span class="footer-text">© 2026 CASEY NEWTON</span>
+        <div class="footer-links">
+            <a href="https://www.platformer.news/" target="_blank" rel="noopener" class="footer-link">PLATFORMER</a>
+            <a href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener" class="footer-link">HARD FORK</a>
+            <a href="mailto:casey@platformer.news" class="footer-link">CONTACT</a>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const themeCookieName = 'cnewton-theme';
+
+        function getSharedTheme() {
+            const prefix = `${themeCookieName}=`;
+            const cookie = document.cookie
+                .split('; ')
+                .find(row => row.startsWith(prefix));
+            return cookie ? cookie.slice(prefix.length) : null;
+        }
+
+        function getPreferredTheme() {
+            const shared = getSharedTheme();
+            if (shared === 'light' || shared === 'dark') return shared;
+            try {
+                const saved = localStorage.getItem('theme');
+                if (saved === 'light' || saved === 'dark') return saved;
+            } catch (error) {
+                // Keep the shared or light preference when storage is unavailable.
+            }
+            return 'light';
+        }
+
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            html.style.colorScheme = theme;
+            try {
+                localStorage.setItem('theme', theme);
+            } catch (error) {
+                // The cookie still shares the preference when storage is unavailable.
+            }
+            document.cookie = `${themeCookieName}=${theme}; Max-Age=31536000; Path=/; Domain=cnewton.org; SameSite=Lax; Secure`;
+            const nextTheme = theme === 'light' ? 'dark' : 'light';
+            themeToggle.querySelector('.theme-toggle-text').textContent = nextTheme.toUpperCase();
+            themeToggle.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
+            themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+        }
+
+        setTheme(getPreferredTheme());
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        });
+    </script>
+</body>
+</html>

@@ -10,18 +10,67 @@
 
     <!-- Canonical -->
     <link rel="canonical" href="https://cnewton.org/about/">
+    <link rel="alternate" type="application/rss+xml" title="Casey Newton’s blog" href="https://blog.cnewton.org/feed.xml">
+    <link rel="alternate" type="application/feed+json" title="Casey Newton’s blog" href="https://blog.cnewton.org/feed.json">
 
     <!-- Open Graph / Social Media Meta Tags -->
     <meta name="description" content="Biography, press photo, and contact information for Casey Newton, founder of Platformer and co-host of Hard Fork.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cnewton.org/about/">
+    <meta property="og:site_name" content="Casey Newton">
+    <meta property="og:locale" content="en_US">
     <meta property="og:title" content="About Casey Newton — Bio &amp; Press">
     <meta property="og:description" content="Biography, press photo, and contact information for Casey Newton, founder of Platformer and co-host of Hard Fork.">
-    <meta property="og:image" content="https://cnewton.org/headshot.jpg">
+    <meta property="og:image" content="https://cnewton.org/social-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:alt" content="Casey Newton, journalist">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="About Casey Newton — Bio &amp; Press">
     <meta name="twitter:description" content="Biography, press photo, and contact information for Casey Newton, founder of Platformer and co-host of Hard Fork.">
-    <meta name="twitter:image" content="https://cnewton.org/headshot.jpg">
+    <meta name="twitter:image" content="https://cnewton.org/social-card.jpg">
+    <meta name="twitter:image:alt" content="Casey Newton, journalist">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "ProfilePage",
+                "@id": "https://cnewton.org/about/#profile",
+                "url": "https://cnewton.org/about/",
+                "name": "About Casey Newton — Bio & Press",
+                "description": "Biography, press photo, and contact information for Casey Newton, founder of Platformer and co-host of Hard Fork.",
+                "isPartOf": {
+                    "@id": "https://cnewton.org/#website"
+                },
+                "mainEntity": {
+                    "@id": "https://cnewton.org/#casey-newton"
+                }
+            },
+            {
+                "@type": "Person",
+                "@id": "https://cnewton.org/#casey-newton",
+                "name": "Casey Newton",
+                "url": "https://cnewton.org/",
+                "jobTitle": "Journalist",
+                "description": "Founder and editor of Platformer and co-host of Hard Fork.",
+                "image": {
+                    "@type": "ImageObject",
+                    "url": "https://cnewton.org/headshot.jpg",
+                    "width": 917,
+                    "height": 1297
+                },
+                "sameAs": [
+                    "https://bsky.app/profile/caseynewton.bsky.social",
+                    "https://www.threads.net/@crumbler",
+                    "https://www.linkedin.com/in/caseynewton1/"
+                ]
+            }
+        ]
+    }
+    </script>
 
     <script>
         // Apply the shared preference before styles load to avoid a theme flash.

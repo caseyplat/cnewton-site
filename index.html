@@ -8,17 +8,66 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
+    <link rel="canonical" href="https://cnewton.org/">
+    <link rel="alternate" type="application/rss+xml" title="Casey Newton’s blog" href="https://blog.cnewton.org/feed.xml">
+    <link rel="alternate" type="application/feed+json" title="Casey Newton’s blog" href="https://blog.cnewton.org/feed.json">
+
     <!-- Open Graph / Social Media Meta Tags -->
     <meta name="description" content="Casey Newton is the founder of Platformer and co-host of Hard Fork. Writing and podcasting about the intersection of technology, democracy, and AI.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cnewton.org/">
+    <meta property="og:site_name" content="Casey Newton">
+    <meta property="og:locale" content="en_US">
     <meta property="og:title" content="Casey Newton — Tech Journalist">
     <meta property="og:description" content="Platformer founder and Hard Fork co-host. Writing and podcasting about the intersection of technology, democracy, and AI.">
-    <meta property="og:image" content="https://cnewton.org/headshot.jpg">
+    <meta property="og:image" content="https://cnewton.org/social-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:alt" content="Casey Newton, journalist">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Casey Newton — Tech Journalist">
     <meta name="twitter:description" content="Platformer founder and Hard Fork co-host. Writing and podcasting about the intersection of technology, democracy, and AI.">
-    <meta name="twitter:image" content="https://cnewton.org/headshot.jpg">
+    <meta name="twitter:image" content="https://cnewton.org/social-card.jpg">
+    <meta name="twitter:image:alt" content="Casey Newton, journalist">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": "https://cnewton.org/#website",
+                "url": "https://cnewton.org/",
+                "name": "Casey Newton",
+                "description": "Casey Newton is the founder of Platformer and co-host of Hard Fork. Writing and podcasting about the intersection of technology, democracy, and AI.",
+                "inLanguage": "en-US",
+                "publisher": {
+                    "@id": "https://cnewton.org/#casey-newton"
+                }
+            },
+            {
+                "@type": "Person",
+                "@id": "https://cnewton.org/#casey-newton",
+                "name": "Casey Newton",
+                "url": "https://cnewton.org/",
+                "jobTitle": "Journalist",
+                "description": "Founder and editor of Platformer and co-host of Hard Fork.",
+                "image": {
+                    "@type": "ImageObject",
+                    "url": "https://cnewton.org/headshot.jpg",
+                    "width": 917,
+                    "height": 1297
+                },
+                "sameAs": [
+                    "https://bsky.app/profile/caseynewton.bsky.social",
+                    "https://www.threads.net/@crumbler",
+                    "https://www.linkedin.com/in/caseynewton1/"
+                ]
+            }
+        ]
+    }
+    </script>
 
     <script>
         // Apply the shared preference before styles load to avoid a theme flash.

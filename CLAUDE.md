@@ -47,6 +47,13 @@ cnewton-site/
   python3 scripts/render_selected_work.py --check
   ```
 
+- After changing page metadata, canonical URLs, feeds, sitemap.xml, robots.txt,
+  or 404.html, run:
+
+  ```
+  python3 scripts/validate_site_metadata.py
+  ```
+
 ## Hosting and deployment
 
 - Hosted on Netlify. The repository root is the publish directory.
