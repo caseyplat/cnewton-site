@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Casey Newton — Bio &amp; Press</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://cnewton.org/about/">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta name="description" content="Biography, press photo, and contact information for Casey Newton, founder of Platformer and co-host of Hard Fork.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cnewton.org/about/">
+    <meta property="og:title" content="About Casey Newton — Bio &amp; Press">
+    <meta property="og:description" content="Biography, press photo, and contact information for Casey Newton, founder of Platformer and co-host of Hard Fork.">
+    <meta property="og:image" content="https://cnewton.org/headshot.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Casey Newton — Bio &amp; Press">
+    <meta name="twitter:description" content="Biography, press photo, and contact information for Casey Newton, founder of Platformer and co-host of Hard Fork.">
+    <meta name="twitter:image" content="https://cnewton.org/headshot.jpg">
+
+    <script>
+        // Apply the shared preference before styles load to avoid a theme flash.
+        (() => {
+            const prefix = 'cnewton-theme=';
+            const cookie = document.cookie
+                .split('; ')
+                .find(row => row.startsWith(prefix));
+            const shared = cookie ? cookie.slice(prefix.length) : null;
+            let saved = null;
+            try {
+                saved = localStorage.getItem('theme');
+            } catch (error) {
+                // Keep the light default when storage is unavailable.
+            }
+            const theme = shared === 'light' || shared === 'dark'
+                ? shared
+                : saved === 'light' || saved === 'dark'
+                    ? saved
+                    : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.style.colorScheme = theme;
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/shared.css">
+    <style>
+        /* Current-page indicator in the shared nav */
+        .nav-links a[aria-current="page"] {
+            color: var(--cyan);
+        }
+
+        .nav-links a[aria-current="page"]::after {
+            width: 100%;
+        }
+
+        /* Page layout */
+        .about-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10rem 3rem 6rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-header {
+            margin-bottom: 4rem;
+        }
+
+        .about-label {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.7rem;
+            color: var(--magenta);
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .about-label::before {
+            content: '>';
+            margin-right: 8px;
+        }
+
+        .about-page h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--light);
+            margin-bottom: 1rem;
+        }
+
+        .about-intro {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(224, 224, 232, 0.7);
+            max-width: 600px;
+        }
+
+        .about-section {
+            margin-bottom: 4rem;
+            padding-top: 2.5rem;
+            position: relative;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--cyan), var(--magenta), transparent);
+            opacity: 0.4;
+        }
+
+        .about-section h2 {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--cyan);
+            letter-spacing: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-section h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-section p,
+        .about-section li {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(224, 224, 232, 0.7);
+        }
+
+        .about-section p + p {
+            margin-top: 1.5rem;
+        }
+
+        .about-list {
+            list-style: none;
+        }
+
+        .about-list li {
+            margin-bottom: 1.25rem;
+        }
+
+        .about-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-link {
+            color: var(--cyan);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .about-link:hover {
+            color: var(--magenta);
+            text-shadow: 0 0 10px var(--magenta);
+        }
+
+        .press-photo-grid {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .press-photo {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, var(--cyan), var(--magenta)) border-box;
+        }
+
+        .press-photo-details p + p {
+            margin-top: 1rem;
+        }
+
+        .download-link {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.7rem;
+            color: var(--cyan);
+            text-decoration: none;
+            letter-spacing: 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .download-link::after {
+            content: '↓';
+            transition: transform 0.3s ease;
+        }
+
+        .download-link:hover {
+            gap: 16px;
+            color: var(--magenta);
+        }
+
+        .back-home {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.75rem;
+            color: var(--cyan);
+            text-decoration: none;
+            letter-spacing: 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-home::before {
+            content: '←';
+            transition: transform 0.3s ease;
+        }
+
+        .back-home:hover {
+            gap: 16px;
+        }
+
+        /* Light mode: darker body copy for readability, matching the homepage */
+        [data-theme="light"] .about-intro,
+        [data-theme="light"] .about-section p,
+        [data-theme="light"] .about-section li {
+            color: #3a3a42;
+        }
+
+        [data-theme="light"] .footer-copy {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 968px) {
+            .about-page {
+                padding: 12rem 1.5rem 4rem;
+            }
+
+            .press-photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .press-photo {
+                max-width: 260px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-page {
+                padding: 11rem 1rem 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">cnewton.org</a>
+        <div class="nav-links">
+            <a href="https://blog.cnewton.org/">BLOG</a>
+            <a href="/about/" aria-current="page">ABOUT</a>
+            <a href="https://bsky.app/profile/caseynewton.bsky.social" target="_blank" rel="noopener">BLUESKY</a>
+            <a href="https://www.threads.net/@crumbler" target="_blank" rel="noopener">THREADS</a>
+            <a href="https://www.linkedin.com/in/caseynewton1/" target="_blank" rel="noopener">LINKEDIN</a>
+            <a href="https://signal.me/#eu/JnqpZ8L9OdqPAacsZ4S7BTFjJh4P8EcqfMlsB9pjH9Ve-395dJdCpqbQjWwWGgOt" target="_blank" rel="noopener">SIGNAL</a>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <span class="theme-toggle-text">MODE</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="about-page">
+        <header class="about-header">
+            <span class="about-label">ABOUT &amp; PRESS</span>
+            <h1>Casey Newton</h1>
+            <p class="about-intro">A biography, press photo, and contact information.</p>
+        </header>
+
+        <!-- Biography: edit here; there is no separate data file. -->
+        <section class="about-section" aria-labelledby="bios-heading">
+            <h2 id="bios-heading">// BIOGRAPHY</h2>
+
+            <p>Casey Newton is the founder and editor of <a href="https://www.platformer.news/" target="_blank" rel="noopener" class="about-link">Platformer</a>, an independent publication about the intersection of technology and democracy. Since its launch in 2020, <a href="https://www.platformer.news/" target="_blank" rel="noopener" class="about-link">Platformer</a> has been trusted by more than 200,000 weekly readers for its reporting and analysis on AI, technology platforms, and power.</p>
+            <p>Newton is also the co-host of <a href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener" class="about-link">Hard Fork</a>, a podcast from The New York Times about the future that&rsquo;s already here, which he hosts with Kevin Roose. Time has named <a href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener" class="about-link">Hard Fork</a> one of the 100 best podcasts of all time.</p>
+            <p>Before founding <a href="https://www.platformer.news/" target="_blank" rel="noopener" class="about-link">Platformer</a>, Newton was the longtime Silicon Valley editor of <a href="https://www.theverge.com/" target="_blank" rel="noopener" class="about-link">The Verge</a>, where he covered the rise of social platforms and their growing influence on public discourse. His reporting has focused on content moderation, platform governance, and the labor practices of tech giants, and his stories about the human cost of building the internet were a finalist for the National Magazine Award.</p>
+            <p>Across <a href="https://www.platformer.news/" target="_blank" rel="noopener" class="about-link">Platformer</a>, <a href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener" class="about-link">Hard Fork</a>, and his personal blog at blog.cnewton.org, Newton writes and podcasts about the intersection of technology, democracy, and AI. He lives in San Francisco with his fianc&eacute;.</p>
+        </section>
+
+        <section class="about-section" aria-labelledby="work-heading">
+            <h2 id="work-heading">// CURRENT WORK</h2>
+            <ul class="about-list">
+                <li>
+                    <h3><a href="https://www.platformer.news/" target="_blank" rel="noopener" class="about-link">Platformer</a></h3>
+                    <p>Independent reporting and analysis on AI, technology platforms, and power. Trusted by more than 200,000 weekly readers since 2020. <a href="https://www.platformer.news/" target="_blank" rel="noopener" class="about-link">Read Platformer</a></p>
+                </li>
+                <li>
+                    <h3><a href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener" class="about-link">Hard Fork</a></h3>
+                    <p>A New York Times podcast about the future that&rsquo;s already here, hosted with Kevin Roose. <a href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener" class="about-link">Listen to Hard Fork</a> or <a href="https://www.youtube.com/hardfork" target="_blank" rel="noopener" class="about-link">watch on YouTube</a></p>
+                </li>
+                <li>
+                    <h3>Blog</h3>
+                    <p>Personal blog. <a href="https://blog.cnewton.org/" class="about-link">Read the blog</a></p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="about-section" aria-labelledby="background-heading">
+            <h2 id="background-heading">// BACKGROUND</h2>
+            <ul class="about-list">
+                <li><p>Founder and editor of <a href="https://www.platformer.news/" target="_blank" rel="noopener" class="about-link">Platformer</a>, 2020&ndash;present.</p></li>
+                <li><p>Co-host of <a href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener" class="about-link">Hard Fork</a>, from The New York Times.</p></li>
+                <li><p>Longtime Silicon Valley editor of <a href="https://www.theverge.com/" target="_blank" rel="noopener" class="about-link">The Verge</a>, covering the rise of social platforms and their growing influence on public discourse.</p></li>
+            </ul>
+        </section>
+
+        <section class="about-section" aria-labelledby="recognition-heading">
+            <h2 id="recognition-heading">// RECOGNITION</h2>
+            <ul class="about-list">
+                <li><p>Finalist, National Magazine Award, for stories about the human cost of building the internet.</p></li>
+                <li><p><a href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener" class="about-link">Hard Fork</a> named one of Time&rsquo;s 100 best podcasts of all time.</p></li>
+            </ul>
+        </section>
+
+        <section class="about-section" aria-labelledby="photo-heading">
+            <h2 id="photo-heading">// PRESS PHOTO</h2>
+            <div class="press-photo-grid">
+                <img src="/headshot.jpg" alt="Headshot of Casey Newton" class="press-photo" width="917" height="1297" loading="lazy">
+                <div class="press-photo-details">
+                    <p>This headshot may be used to accompany coverage. The image is 917 &times; 1297 pixels.</p>
+                    <a href="/headshot.jpg" download="casey-newton-headshot.jpg" class="download-link">DOWNLOAD PHOTO</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">// CONTACT</h2>
+            <ul class="about-list">
+                <li><p>General and press inquiries: <a href="mailto:casey@platformer.news" class="about-link">casey@platformer.news</a></p></li>
+                <li><p>Secure contact: <a href="https://signal.me/#eu/JnqpZ8L9OdqPAacsZ4S7BTFjJh4P8EcqfMlsB9pjH9Ve-395dJdCpqbQjWwWGgOt" target="_blank" rel="noopener" class="about-link">Message Casey Newton on Signal</a></p></li>
+                <li><p>Elsewhere: <a href="https://bsky.app/profile/caseynewton.bsky.social" target="_blank" rel="noopener" class="about-link">Bluesky</a>, <a href="https://www.threads.net/@crumbler" target="_blank" rel="noopener" class="about-link">Threads</a>, <a href="https://www.linkedin.com/in/caseynewton1/" target="_blank" rel="noopener" class="about-link">LinkedIn</a></p></li>
+            </ul>
+        </section>
+
+        <a href="/" class="back-home">BACK TO HOME</a>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.platformer.news/" target="_blank" rel="noopener" class="footer-link">PLATFORMER</a>
+            <a href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener" class="footer-link">HARD FORK</a>
+            <a href="mailto:casey@platformer.news" class="footer-link">CONTACT</a>
+        </div>
+        <p class="footer-copy">© 2026 Casey Newton <span>_</span></p>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const themeCookieName = 'cnewton-theme';
+
+        // Share the theme preference with blog.cnewton.org.
+        function getSharedTheme() {
+            const prefix = `${themeCookieName}=`;
+            const cookie = document.cookie
+                .split('; ')
+                .find(row => row.startsWith(prefix));
+            return cookie ? cookie.slice(prefix.length) : null;
+        }
+
+        // Prefer the shared choice, then the legacy local preference, then light.
+        function getPreferredTheme() {
+            const shared = getSharedTheme();
+            if (shared === 'light' || shared === 'dark') return shared;
+            const saved = localStorage.getItem('theme');
+            if (saved === 'light' || saved === 'dark') return saved;
+            return 'light';
+        }
+
+        // Apply theme
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            document.cookie = `${themeCookieName}=${theme}; Max-Age=31536000; Path=/; Domain=cnewton.org; SameSite=Lax; Secure`;
+            themeToggle.querySelector('.theme-toggle-text').textContent = theme === 'light' ? 'DARK' : 'LIGHT';
+        }
+
+        // Initialize theme
+        setTheme(getPreferredTheme());
+
+        // Toggle on click
+        themeToggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            setTheme(current === 'light' ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>

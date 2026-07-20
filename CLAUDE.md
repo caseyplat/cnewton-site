@@ -16,7 +16,8 @@ Personal website for Casey Newton, tech journalist.
 ```
 cnewton-site/
 ├── index.html           # Homepage (substantial inline CSS + JavaScript)
-├── css/shared.css       # Design tokens and shared homepage styles
+├── about/index.html     # Biography, press photo, and public contact page
+├── css/shared.css       # Design tokens and styles shared across site pages
 ├── netlify/functions/   # Serverless functions proxying homepage feeds
 │   ├── platformer-feed.js
 │   └── hardfork-feed.js
