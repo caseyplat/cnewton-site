@@ -2,7 +2,12 @@ exports.handler = async (event) => {
   const RSS_URL = 'https://www.platformer.news/rss/';
 
   try {
-    const response = await fetch(RSS_URL);
+    const response = await fetch(RSS_URL, {
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!response.ok) {
+      throw new Error(`Platformer RSS returned ${response.status}`);
+    }
     const xml = await response.text();
 
     // Simple XML parsing for RSS feed

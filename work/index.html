@@ -45,7 +45,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/shared.css">
     <style>
         .nav-links a[aria-current="page"] {
@@ -202,6 +202,7 @@
             letter-spacing: 2px;
             text-decoration: none;
             transition: gap 0.3s ease;
+            min-height: 44px;
         }
 
         .back-home::before {
@@ -247,6 +248,11 @@
                 gap: 0.35rem;
                 font-size: 0.65rem;
             }
+
+            .work-page h1 {
+                font-size: clamp(2rem, 11vw, 2.25rem);
+                overflow-wrap: anywhere;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -258,6 +264,8 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">SKIP TO CONTENT</a>
+
     <nav>
         <a href="/" class="logo">cnewton.org</a>
         <div class="nav-links">
@@ -265,13 +273,13 @@
             <a href="/work/" aria-current="page">WORK</a>
             <a href="/about/">ABOUT</a>
             <a href="https://signal.me/#eu/JnqpZ8L9OdqPAacsZ4S7BTFjJh4P8EcqfMlsB9pjH9Ve-395dJdCpqbQjWwWGgOt" target="_blank" rel="noopener">SIGNAL</a>
-            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
                 <span class="theme-toggle-text">MODE</span>
             </button>
         </div>
     </nav>
 
-    <main class="work-page">
+    <main class="work-page" id="main-content">
         <header class="work-header">
             <span class="work-label">SELECTED WORK</span>
             <h1>Reporting &amp; Analysis</h1>
@@ -443,16 +451,28 @@
         function getPreferredTheme() {
             const shared = getSharedTheme();
             if (shared === 'light' || shared === 'dark') return shared;
-            const saved = localStorage.getItem('theme');
-            if (saved === 'light' || saved === 'dark') return saved;
+            try {
+                const saved = localStorage.getItem('theme');
+                if (saved === 'light' || saved === 'dark') return saved;
+            } catch (error) {
+                // Keep the shared or light preference when storage is unavailable.
+            }
             return 'light';
         }
 
         function setTheme(theme) {
             html.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
+            html.style.colorScheme = theme;
+            try {
+                localStorage.setItem('theme', theme);
+            } catch (error) {
+                // The cookie still shares the preference when storage is unavailable.
+            }
             document.cookie = `${themeCookieName}=${theme}; Max-Age=31536000; Path=/; Domain=cnewton.org; SameSite=Lax; Secure`;
-            themeToggle.querySelector('.theme-toggle-text').textContent = theme === 'light' ? 'DARK' : 'LIGHT';
+            const nextTheme = theme === 'light' ? 'dark' : 'light';
+            themeToggle.querySelector('.theme-toggle-text').textContent = nextTheme.toUpperCase();
+            themeToggle.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
+            themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
         }
 
         setTheme(getPreferredTheme());
