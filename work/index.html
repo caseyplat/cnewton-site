@@ -48,6 +48,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/shared.css">
     <style>
+        .nav-links a[aria-current="page"] {
+            color: var(--cyan);
+        }
+
+        .nav-links a[aria-current="page"]::after {
+            width: 100%;
+        }
+
         .work-page {
             max-width: 980px;
             margin: 0 auto;
@@ -254,10 +262,8 @@
         <a href="/" class="logo">cnewton.org</a>
         <div class="nav-links">
             <a href="https://blog.cnewton.org/">BLOG</a>
+            <a href="/work/" aria-current="page">WORK</a>
             <a href="/about/">ABOUT</a>
-            <a href="https://bsky.app/profile/caseynewton.bsky.social" target="_blank" rel="noopener">BLUESKY</a>
-            <a href="https://www.threads.net/@crumbler" target="_blank" rel="noopener">THREADS</a>
-            <a href="https://www.linkedin.com/in/caseynewton1/" target="_blank" rel="noopener">LINKEDIN</a>
             <a href="https://signal.me/#eu/JnqpZ8L9OdqPAacsZ4S7BTFjJh4P8EcqfMlsB9pjH9Ve-395dJdCpqbQjWwWGgOt" target="_blank" rel="noopener">SIGNAL</a>
             <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
                 <span class="theme-toggle-text">MODE</span>
