@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Source Code collector</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://cnewton.org/privacy/">
+    <link rel="alternate" type="application/rss+xml" title="Casey Newton’s blog" href="https://blog.cnewton.org/feed.xml">
+    <link rel="alternate" type="application/feed+json" title="Casey Newton’s blog" href="https://blog.cnewton.org/feed.json">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta name="description" content="Privacy policy for Source Code collector, a personal, read-only tool that Casey Newton uses with his own Google account.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cnewton.org/privacy/">
+    <meta property="og:site_name" content="Casey Newton">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Privacy Policy — Source Code collector">
+    <meta property="og:description" content="Privacy policy for Source Code collector, a personal, read-only tool that Casey Newton uses with his own Google account.">
+    <meta property="og:image" content="https://cnewton.org/social-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:alt" content="Casey Newton, journalist">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Privacy Policy — Source Code collector">
+    <meta name="twitter:description" content="Privacy policy for Source Code collector, a personal, read-only tool that Casey Newton uses with his own Google account.">
+    <meta name="twitter:image" content="https://cnewton.org/social-card.jpg">
+    <meta name="twitter:image:alt" content="Casey Newton, journalist">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "@id": "https://cnewton.org/privacy/#webpage",
+                "url": "https://cnewton.org/privacy/",
+                "name": "Privacy Policy — Source Code collector",
+                "description": "Privacy policy for Source Code collector, a personal, read-only tool that Casey Newton uses with his own Google account.",
+                "isPartOf": {
+                    "@id": "https://cnewton.org/#website"
+                },
+                "mainEntity": {
+                    "@id": "https://cnewton.org/#casey-newton"
+                }
+            },
+            {
+                "@type": "Person",
+                "@id": "https://cnewton.org/#casey-newton",
+                "name": "Casey Newton",
+                "url": "https://cnewton.org/",
+                "jobTitle": "Journalist",
+                "description": "Founder and editor of Platformer and co-host of Hard Fork.",
+                "image": {
+                    "@type": "ImageObject",
+                    "url": "https://cnewton.org/headshot.jpg",
+                    "width": 917,
+                    "height": 1297
+                },
+                "sameAs": [
+                    "https://bsky.app/profile/caseynewton.bsky.social",
+                    "https://www.threads.net/@crumbler",
+                    "https://www.linkedin.com/in/caseynewton1/"
+                ]
+            }
+        ]
+    }
+    </script>
+
+    <script>
+        // Apply the shared preference before styles load to avoid a theme flash.
+        (() => {
+            const prefix = 'cnewton-theme=';
+            const cookie = document.cookie
+                .split('; ')
+                .find(row => row.startsWith(prefix));
+            const shared = cookie ? cookie.slice(prefix.length) : null;
+            let saved = null;
+            try {
+                saved = localStorage.getItem('theme');
+            } catch (error) {
+                // Keep the light default when storage is unavailable.
+            }
+            const theme = shared === 'light' || shared === 'dark'
+                ? shared
+                : saved === 'light' || saved === 'dark'
+                    ? saved
+                    : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.style.colorScheme = theme;
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/shared.css">
+    <style>
+        /* Current-page indicator in the shared nav */
+        .nav-links a[aria-current="page"] {
+            color: var(--cyan);
+        }
+
+        .nav-links a[aria-current="page"]::after {
+            width: 100%;
+        }
+
+        /* Page layout */
+        .about-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10rem 3rem 6rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-header {
+            margin-bottom: 4rem;
+        }
+
+        .about-label {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.7rem;
+            color: var(--magenta);
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .about-label::before {
+            content: '>';
+            margin-right: 8px;
+        }
+
+        .about-page h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--light);
+            margin-bottom: 1rem;
+        }
+
+        .about-intro {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(224, 224, 232, 0.7);
+            max-width: 600px;
+        }
+
+        .about-section {
+            margin-bottom: 4rem;
+            padding-top: 2.5rem;
+            position: relative;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--cyan), var(--magenta), transparent);
+            opacity: 0.4;
+        }
+
+        .about-section h2 {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--cyan);
+            letter-spacing: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-section h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-section p,
+        .about-section li {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(224, 224, 232, 0.7);
+        }
+
+        .about-section p + p {
+            margin-top: 1.5rem;
+        }
+
+        .about-list {
+            list-style: none;
+        }
+
+        .about-list li {
+            margin-bottom: 1.25rem;
+        }
+
+        .about-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-link {
+            color: var(--cyan);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .about-link:hover {
+            color: var(--magenta);
+            text-shadow: 0 0 10px var(--magenta);
+        }
+
+        .press-photo-grid {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .press-photo {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, var(--cyan), var(--magenta)) border-box;
+        }
+
+        .press-photo-details p + p {
+            margin-top: 1rem;
+        }
+
+        .download-link {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.7rem;
+            color: var(--cyan);
+            text-decoration: none;
+            letter-spacing: 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            min-height: 44px;
+        }
+
+        .download-link::after {
+            content: '↓';
+            transition: transform 0.3s ease;
+        }
+
+        .download-link:hover {
+            gap: 16px;
+            color: var(--magenta);
+        }
+
+        .back-home {
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.75rem;
+            color: var(--cyan);
+            text-decoration: none;
+            letter-spacing: 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 44px;
+        }
+
+        .back-home::before {
+            content: '←';
+            transition: transform 0.3s ease;
+        }
+
+        .back-home:hover {
+            gap: 16px;
+        }
+
+        /* Light mode: darker body copy for readability, matching the homepage */
+        [data-theme="light"] .about-intro,
+        [data-theme="light"] .about-section p,
+        [data-theme="light"] .about-section li {
+            color: #3a3a42;
+        }
+
+        [data-theme="light"] .footer-copy {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 968px) {
+            .about-page {
+                padding: 12rem 1.5rem 4rem;
+            }
+
+            .press-photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .press-photo {
+                max-width: 260px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-page {
+                padding: 11rem 1rem 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">SKIP TO CONTENT</a>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">cnewton.org</a>
+        <div class="nav-links">
+            <a href="https://blog.cnewton.org/">BLOG</a>
+            <a href="/work/">WORK</a>
+            <a href="/about/">ABOUT</a>
+            <a href="https://signal.me/#eu/JnqpZ8L9OdqPAacsZ4S7BTFjJh4P8EcqfMlsB9pjH9Ve-395dJdCpqbQjWwWGgOt" target="_blank" rel="noopener">SIGNAL</a>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+                <span class="theme-toggle-text">MODE</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="about-page" id="main-content">
+        <header class="about-header">
+            <span class="about-label">PRIVACY POLICY</span>
+            <h1>Source Code collector</h1>
+            <p class="about-intro">A personal, read-only tool that Casey Newton uses with his own Google account. Effective September 6, 2026.</p>
+        </header>
+
+        <section class="about-section" aria-labelledby="what-heading">
+            <h2 id="what-heading">// WHAT IT IS</h2>
+            <p>Source Code collector is a small program that runs on Casey Newton&rsquo;s own computer. It looks at his own Gmail and Google Calendar to note when he last corresponded or met with people he already keeps notes on, so that his private contact records stay current. It is not offered to the public, has no other users, and has no website beyond this page.</p>
+        </section>
+
+        <section class="about-section" aria-labelledby="access-heading">
+            <h2 id="access-heading">// WHAT IT ACCESSES</h2>
+            <ul class="about-list">
+                <li><p>Gmail, read-only: message headers (sender, recipients, date, subject) for messages exchanged with addresses already in his contact records. It does not read message bodies or attachments.</p></li>
+                <li><p>Google Calendar, read-only: event titles, dates and attendee addresses for events on his own calendar.</p></li>
+                <li><p>It never sends email, creates or changes events, or modifies anything in the Google account.</p></li>
+            </ul>
+        </section>
+
+        <section class="about-section" aria-labelledby="use-heading">
+            <h2 id="use-heading">// HOW THE DATA IS USED AND STORED</h2>
+            <ul class="about-list">
+                <li><p>The only thing recorded is a dated note that a conversation or meeting took place, together with the subject or event title and a link back to the original item in Gmail or Google Calendar.</p></li>
+                <li><p>Those notes are stored in files on the owner&rsquo;s computer alongside his private contact records. They are not uploaded to any server, shared with any third party, sold, or used for advertising.</p></li>
+                <li><p>No data obtained from Google APIs is used to train or improve any artificial-intelligence or machine-learning model.</p></li>
+                <li><p>Access tokens are stored only on the owner&rsquo;s computer, in a location readable only by his user account.</p></li>
+            </ul>
+        </section>
+
+        <section class="about-section" aria-labelledby="limited-heading">
+            <h2 id="limited-heading">// GOOGLE API SERVICES USER DATA POLICY</h2>
+            <p>Source Code collector&rsquo;s use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener" class="about-link">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+        </section>
+
+        <section class="about-section" aria-labelledby="control-heading">
+            <h2 id="control-heading">// RETENTION AND REVOCATION</h2>
+            <ul class="about-list">
+                <li><p>Recorded notes are kept until the owner deletes them; because they live in local files, deleting them removes them completely.</p></li>
+                <li><p>Access can be revoked at any time from the <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener" class="about-link">third-party access page</a> of the Google account, after which the program can no longer read anything.</p></li>
+            </ul>
+        </section>
+
+        <section class="about-section" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">// CONTACT</h2>
+            <p>Questions about this policy: <a href="mailto:casey@platformer.news" class="about-link">casey@platformer.news</a>.</p>
+        </section>
+
+        <a href="/" class="back-home">BACK TO HOME</a>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.platformer.news/" target="_blank" rel="noopener" class="footer-link">PLATFORMER</a>
+            <a href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener" class="footer-link">HARD FORK</a>
+            <a href="mailto:casey@platformer.news" class="footer-link">CONTACT</a>
+        </div>
+        <p class="footer-copy">© 2026 Casey Newton <span>_</span></p>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const themeCookieName = 'cnewton-theme';
+
+        // Share the theme preference with blog.cnewton.org.
+        function getSharedTheme() {
+            const prefix = `${themeCookieName}=`;
+            const cookie = document.cookie
+                .split('; ')
+                .find(row => row.startsWith(prefix));
+            return cookie ? cookie.slice(prefix.length) : null;
+        }
+
+        // Prefer the shared choice, then the legacy local preference, then light.
+        function getPreferredTheme() {
+            const shared = getSharedTheme();
+            if (shared === 'light' || shared === 'dark') return shared;
+            try {
+                const saved = localStorage.getItem('theme');
+                if (saved === 'light' || saved === 'dark') return saved;
+            } catch (error) {
+                // Keep the shared or light preference when storage is unavailable.
+            }
+            return 'light';
+        }
+
+        // Apply theme
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            html.style.colorScheme = theme;
+            try {
+                localStorage.setItem('theme', theme);
+            } catch (error) {
+                // The cookie still shares the preference when storage is unavailable.
+            }
+            document.cookie = `${themeCookieName}=${theme}; Max-Age=31536000; Path=/; Domain=cnewton.org; SameSite=Lax; Secure`;
+            const nextTheme = theme === 'light' ? 'dark' : 'light';
+            themeToggle.querySelector('.theme-toggle-text').textContent = nextTheme.toUpperCase();
+            themeToggle.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
+            themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+        }
+
+        // Initialize theme
+        setTheme(getPreferredTheme());
+
+        // Toggle on click
+        themeToggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            setTheme(current === 'light' ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>

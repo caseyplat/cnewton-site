@@ -28,6 +28,10 @@ INDEXABLE_PAGES = {
         "canonical": f"{SITE_ORIGIN}/work/",
         "schema_types": {"CollectionPage"},
     },
+    "privacy/index.html": {
+        "canonical": f"{SITE_ORIGIN}/privacy/",
+        "schema_types": {"WebPage", "Person"},
+    },
 }
 
 REQUIRED_OG = {
@@ -325,7 +329,7 @@ def main() -> int:
         return 1
 
     print(
-        "Metadata is valid for 3 indexable pages, the 404 page, "
+        f"Metadata is valid for {len(INDEXABLE_PAGES)} indexable pages, the 404 page, "
         "sitemap.xml, robots.txt, and both blog feeds."
     )
     return 0
