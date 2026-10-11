@@ -2,21 +2,23 @@
 /* This file is the source of truth - index.html should match exactly */
 
 :root {
-    --cyan: #00FFFF;
-    --magenta: #FF00FF;
-    --dark: #0a0a0f;
-    --darker: #050508;
-    --gray: #1a1a24;
-    --light: #e0e0e8;
+    /* Copper & oxblood palette (Oct 2026). The --cyan / --magenta names are
+       historical: --cyan is the copper accent, --magenta the oxblood accent. */
+    --cyan: #FF9455;
+    --magenta: #E0566A;
+    --dark: #16100d;
+    --darker: #0e0a08;
+    --gray: #221915;
+    --light: #EDE3D9;
     --pixel-size: 4px;
 
     /* Light mode colors - deeper, more saturated for readability */
-    --cyan-light: #006c99;
-    --magenta-light: #bb0088;
-    --bg-light: #f4f3f1;
-    --bg-lighter: #faf9f7;
-    --gray-light: #e8e7e5;
-    --text-dark: #1a1a1f;
+    --cyan-light: #B04E18;
+    --magenta-light: #8E1F35;
+    --bg-light: #F5F0EA;
+    --bg-lighter: #FBF8F4;
+    --gray-light: #EAE2D8;
+    --text-dark: #2A1E18;
 }
 
 /* Light mode theme */
@@ -31,8 +33,8 @@
 
 [data-theme="light"] body::before {
     background-image:
-        linear-gradient(rgba(0, 119, 170, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 119, 170, 0.08) 1px, transparent 1px);
+        linear-gradient(rgba(176, 78, 24, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(176, 78, 24, 0.08) 1px, transparent 1px);
 }
 
 [data-theme="light"] body::after {
@@ -250,8 +252,8 @@ body::before {
     width: 100%;
     height: 100%;
     background-image:
-        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(255, 148, 85, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 148, 85, 0.03) 1px, transparent 1px);
     background-size: 20px 20px;
     pointer-events: none;
     z-index: -1;
@@ -388,7 +390,7 @@ footer {
 
 .footer-copy {
     font-size: 0.8rem;
-    color: rgba(224, 224, 232, 0.4);
+    color: rgba(237, 227, 217, 0.4);
 }
 
 .footer-copy span {

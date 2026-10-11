@@ -13,13 +13,13 @@
     <link rel="alternate" type="application/feed+json" title="Casey Newton’s blog" href="https://blog.cnewton.org/feed.json">
 
     <!-- Open Graph / Social Media Meta Tags -->
-    <meta name="description" content="Casey Newton is the founder of Platformer and co-host of Hard Fork. Writing and podcasting about the intersection of technology, democracy, and AI.">
+    <meta name="description" content="Casey Newton is the founder of Platformer and co-host of Machine Gods. Writing and podcasting about the intersection of technology, democracy, and AI.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cnewton.org/">
     <meta property="og:site_name" content="Casey Newton">
     <meta property="og:locale" content="en_US">
     <meta property="og:title" content="Casey Newton — Tech Journalist">
-    <meta property="og:description" content="Platformer founder and Hard Fork co-host. Writing and podcasting about the intersection of technology, democracy, and AI.">
+    <meta property="og:description" content="Platformer founder and Machine Gods co-host. Writing and podcasting about the intersection of technology, democracy, and AI.">
     <meta property="og:image" content="https://cnewton.org/social-card.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -27,7 +27,7 @@
     <meta property="og:image:alt" content="Casey Newton, journalist">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Casey Newton — Tech Journalist">
-    <meta name="twitter:description" content="Platformer founder and Hard Fork co-host. Writing and podcasting about the intersection of technology, democracy, and AI.">
+    <meta name="twitter:description" content="Platformer founder and Machine Gods co-host. Writing and podcasting about the intersection of technology, democracy, and AI.">
     <meta name="twitter:image" content="https://cnewton.org/social-card.jpg">
     <meta name="twitter:image:alt" content="Casey Newton, journalist">
 
@@ -40,7 +40,7 @@
                 "@id": "https://cnewton.org/#website",
                 "url": "https://cnewton.org/",
                 "name": "Casey Newton",
-                "description": "Casey Newton is the founder of Platformer and co-host of Hard Fork. Writing and podcasting about the intersection of technology, democracy, and AI.",
+                "description": "Casey Newton is the founder of Platformer and co-host of Machine Gods. Writing and podcasting about the intersection of technology, democracy, and AI.",
                 "inLanguage": "en-US",
                 "publisher": {
                     "@id": "https://cnewton.org/#casey-newton"
@@ -52,12 +52,12 @@
                 "name": "Casey Newton",
                 "url": "https://cnewton.org/",
                 "jobTitle": "Journalist",
-                "description": "Founder and editor of Platformer and co-host of Hard Fork.",
+                "description": "Founder and editor of Platformer and co-host of Machine Gods.",
                 "image": {
                     "@type": "ImageObject",
                     "url": "https://cnewton.org/headshot.jpg",
-                    "width": 917,
-                    "height": 1297
+                    "width": 1500,
+                    "height": 2000
                 },
                 "sameAs": [
                     "https://bsky.app/profile/caseynewton.bsky.social",
@@ -218,13 +218,13 @@
                 filter: drop-shadow(0 0 0 transparent);
             }
             50% {
-                filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.5)) drop-shadow(0 0 40px rgba(255, 0, 255, 0.3));
+                filter: drop-shadow(0 0 20px rgba(255, 148, 85, 0.5)) drop-shadow(0 0 40px rgba(224, 86, 106, 0.3));
             }
         }
 
         .hero-subtitle {
             font-size: 1.1rem;
-            color: rgba(224, 224, 232, 0.7);
+            color: rgba(237, 227, 217, 0.7);
             line-height: 1.8;
             max-width: 500px;
         }
@@ -265,12 +265,13 @@
             -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
-            animation: frameRotate 10s linear infinite;
+            animation: frameRotate 6s ease-in-out infinite alternate;
         }
 
+        /* A gentle shimmer that stays within the copper-to-oxblood range */
         @keyframes frameRotate {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
+            0% { filter: hue-rotate(-12deg) saturate(1); }
+            100% { filter: hue-rotate(12deg) saturate(1.15); }
         }
 
         .headshot {
@@ -278,31 +279,7 @@
             height: 100%;
             object-fit: cover;
             object-position: top;
-            filter: grayscale(100%) contrast(1.1);
             transition: all 0.5s ease;
-        }
-
-        .headshot-container:hover .headshot {
-            filter: grayscale(0%) contrast(1);
-        }
-
-        /* Duotone overlay */
-        .headshot-container::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg,
-                rgba(0, 255, 255, 0.3) 0%,
-                rgba(255, 0, 255, 0.3) 100%
-            );
-            mix-blend-mode: color;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
-            z-index: 1;
-        }
-
-        .headshot-container:hover::before {
-            opacity: 0;
         }
 
         /* Pixel corners */
@@ -336,17 +313,7 @@
         .pixel-corner.bottom-right::before { width: 20px; height: 4px; bottom: 0; right: 0; background: var(--magenta); }
         .pixel-corner.bottom-right::after { width: 4px; height: 20px; bottom: 0; right: 0; background: var(--magenta); }
 
-        /* Projects Section */
-        .projects {
-            padding: 8rem 3rem;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
+        /* Section labels and links */
         .section-tag {
             font-family: 'Silkscreen', cursive;
             font-size: 0.7rem;
@@ -354,121 +321,6 @@
             letter-spacing: 4px;
             display: block;
             margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            color: var(--light);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: var(--gray);
-            padding: 3rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .js.animations-ready .project-card {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .js.animations-ready .project-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--cyan), var(--magenta));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow:
-                0 20px 40px rgba(0, 0, 0, 0.3),
-                0 0 60px rgba(0, 255, 255, 0.1);
-        }
-
-        .project-icon {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .project-logo {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* Pixel art icons */
-        .pixel-icon {
-            display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            gap: 2px;
-            width: 100%;
-            height: 100%;
-        }
-
-        .pixel-icon span {
-            background: var(--cyan);
-            transition: background 0.3s ease;
-        }
-
-        .project-card:nth-child(2) .pixel-icon span {
-            background: var(--magenta);
-        }
-
-        .project-card:hover .pixel-icon span {
-            animation: pixelPulse 0.5s ease forwards;
-        }
-
-        @keyframes pixelPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(0.8); }
-            100% { transform: scale(1); }
-        }
-
-        .project-name {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--light);
-        }
-
-        .project-desc {
-            font-size: 0.95rem;
-            color: rgba(224, 224, 232, 0.7);
-            line-height: 1.7;
-            margin-bottom: 2rem;
         }
 
         .project-link {
@@ -482,10 +334,6 @@
             min-height: 44px;
             gap: 8px;
             transition: all 0.3s ease;
-        }
-
-        .project-card:nth-child(2) .project-link {
-            color: var(--magenta);
         }
 
         .project-link:hover {
@@ -510,65 +358,154 @@
             font-size: 0.8rem;
         }
 
-        /* Recent posts widget */
-        .recent-posts {
-            margin: 1.5rem 0;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(0, 255, 255, 0.2);
+        /* Promo band: Machine Gods and Platformer, dark in both themes */
+        .promos {
+            background: #16100d;
+            color: #EDE3D9;
+            padding: 6rem 3rem 5rem;
+            position: relative;
         }
 
-        .posts-label {
-            font-family: 'Silkscreen', cursive;
-            font-size: 0.6rem;
-            color: var(--cyan);
-            letter-spacing: 2px;
+        .promos::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #FF9455, #E0566A);
         }
 
-        .posts-list {
+        .promos-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .promo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-right: clamp(2rem, 5vw, 4rem);
+        }
+
+        .promo + .promo {
+            border-left: 1px solid rgba(255, 148, 85, 0.35);
+            padding-right: 0;
+            padding-left: clamp(2rem, 5vw, 4rem);
+        }
+
+        .promo-mark {
+            height: 5rem;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .mg-logo {
+            height: 76%;
+            width: auto;
+        }
+
+        .platformer-logo {
+            height: 44%;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .promo-desc {
+            max-width: 28rem;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: rgba(237, 227, 217, 0.78);
+            margin-bottom: 1.5rem;
+        }
+
+        .promos .project-link {
+            color: #FF9455;
+        }
+
+        .promos .signup-form {
+            width: 100%;
+            max-width: 28rem;
+        }
+
+        .listen-links {
             list-style: none;
-            margin-top: 0.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .posts-list li {
-            margin-bottom: 0.5rem;
-        }
-
-        .posts-list a {
-            font-size: 0.85rem;
-            color: var(--light);
+        .listen-links a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            padding: 0 1rem;
+            border: 1px solid rgba(255, 148, 85, 0.55);
+            color: #EDE3D9;
+            font-family: 'Silkscreen', cursive;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
             text-decoration: none;
-            opacity: 0.8;
-            transition: all 0.2s ease;
-            display: block;
-            line-height: 1.4;
+            transition: background 0.2s ease, color 0.2s ease;
         }
 
-        .posts-list a:hover {
-            opacity: 1;
-            color: var(--cyan);
+        .listen-links a:hover,
+        .listen-links a:focus-visible {
+            background: #FF9455;
+            border-color: #FF9455;
+            color: #16100d;
         }
 
-        .posts-list a::before {
-            content: '→ ';
-            color: var(--cyan);
-            opacity: 0.5;
+        .previously {
+            max-width: 1100px;
+            margin: 4rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(237, 227, 217, 0.15);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: rgba(237, 227, 217, 0.7);
+            text-align: center;
         }
 
-        /* Hard Fork variant (magenta) */
-        .posts-label-alt {
-            color: var(--magenta);
+        .previously a {
+            color: #FF9455;
         }
 
-        .posts-list-alt a:hover {
-            color: var(--magenta);
+        .promos .selected-work-cta {
+            margin-top: 2rem;
         }
 
-        .posts-list-alt a::before {
-            color: var(--magenta);
+        @media (max-width: 968px) {
+            .promos-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .promo {
+                padding-right: 0;
+                padding-bottom: 3rem;
+            }
+
+            .promo + .promo {
+                border-left: 0;
+                border-top: 1px solid rgba(255, 148, 85, 0.35);
+                padding-left: 0;
+                padding-top: 3rem;
+                padding-bottom: 0;
+            }
         }
 
-        #hardfork-videos {
-            border-top-color: rgba(255, 0, 255, 0.2);
+        @media (max-width: 480px) {
+            .promos {
+                padding: 4rem 1rem 3.5rem;
+            }
+
+            .promo-mark {
+                height: 3.75rem;
+            }
         }
 
         /* Email signup form */
@@ -583,7 +520,7 @@
             min-height: 44px;
             padding: 0.75rem 1rem;
             background: var(--darker);
-            border: 1px solid rgba(0, 255, 255, 0.3);
+            border: 1px solid rgba(255, 148, 85, 0.3);
             color: var(--light);
             font-family: 'Space Mono', monospace;
             font-size: 0.85rem;
@@ -592,12 +529,12 @@
         }
 
         .signup-input::placeholder {
-            color: rgba(224, 224, 232, 0.4);
+            color: rgba(237, 227, 217, 0.4);
         }
 
         .signup-input:focus {
             border-color: var(--cyan);
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 148, 85, 0.2);
         }
 
         .signup-button {
@@ -615,37 +552,12 @@
 
         .signup-button:hover {
             background: var(--magenta);
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+            box-shadow: 0 0 20px rgba(224, 86, 106, 0.4);
         }
 
         /* YouTube subscribe button */
-        .youtube-subscribe {
-            display: inline-flex;
-            align-items: center;
-            min-height: 44px;
-            gap: 0.5rem;
-            padding: 0.75rem 1.25rem;
-            background: var(--magenta);
-            border: none;
-            color: var(--darker);
-            font-family: 'Silkscreen', cursive;
-            font-size: 0.65rem;
-            letter-spacing: 1px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 1rem;
-        }
-
-        .youtube-subscribe:hover {
-            background: var(--cyan);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-        }
 
         /* Block display for project links */
-        .project-link-block {
-            display: block;
-        }
 
         @media (max-width: 480px) {
             .hero {
@@ -666,14 +578,6 @@
 
             .headshot-container {
                 max-width: 280px;
-            }
-
-            .projects {
-                padding: 6rem 1rem;
-            }
-
-            .project-card {
-                padding: 1.5rem;
             }
 
             .signup-form {
@@ -743,9 +647,6 @@
                 margin: 0 auto;
             }
 
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         /* Custom cursor trail */
@@ -794,7 +695,7 @@
         .back-to-top:hover {
             background: var(--cyan);
             color: var(--darker);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(255, 148, 85, 0.5);
         }
 
         .back-to-top::before {
@@ -895,7 +796,7 @@
             content: '';
             position: absolute;
             inset: -20px;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.4) 0%, rgba(255, 0, 255, 0.4) 50%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 148, 85, 0.4) 0%, rgba(224, 86, 106, 0.4) 50%, transparent 70%);
             animation: headshotBurst 0.8s ease-out forwards;
             pointer-events: none;
             z-index: 10;
@@ -945,44 +846,18 @@
             background: var(--magenta-light);
         }
 
-        [data-theme="light"] .headshot {
-            filter: grayscale(30%) contrast(1.05);
-        }
-
-        [data-theme="light"] .headshot-container:hover .headshot {
-            filter: grayscale(0%) contrast(1);
-        }
-
-        [data-theme="light"] .headshot-container::before {
-            background: linear-gradient(135deg,
-                rgba(0, 119, 170, 0.15) 0%,
-                rgba(187, 0, 136, 0.15) 100%
-            );
-        }
-
-        [data-theme="light"] .project-card {
-            background: #fff;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
-        }
-
-        [data-theme="light"] .project-card:hover {
-            box-shadow:
-                0 20px 40px rgba(0, 0, 0, 0.1),
-                0 0 60px rgba(0, 119, 170, 0.1);
-        }
-
         [data-theme="light"] .signup-input {
             background: var(--bg-light);
-            border-color: rgba(0, 119, 170, 0.3);
+            border-color: rgba(176, 78, 24, 0.3);
         }
 
         [data-theme="light"] .signup-input:focus {
             border-color: var(--cyan-light);
-            box-shadow: 0 0 10px rgba(0, 119, 170, 0.2);
+            box-shadow: 0 0 10px rgba(176, 78, 24, 0.2);
         }
 
         [data-theme="light"] .signup-input::placeholder {
-            color: rgba(26, 26, 31, 0.5);
+            color: rgba(42, 30, 24, 0.5);
         }
 
         [data-theme="light"] .back-to-top {
@@ -997,11 +872,7 @@
 
         /* Light mode body copy - make text darker and more readable */
         [data-theme="light"] .hero-subtitle {
-            color: #3a3a42;
-        }
-
-        [data-theme="light"] .project-desc {
-            color: #3a3a42;
+            color: #45372f;
         }
 
         [data-theme="light"] .footer-copy {
@@ -1047,7 +918,7 @@
             <div class="hero-text">
                 <span class="hero-label">JOURNALIST</span>
                 <h1><span class="glow-wrap"><span class="tech-text">Casey</span></span><br><span class="glow-wrap glow-wrap-alt"><span class="tech-text">Newton</span></span></h1>
-                <p class="hero-subtitle">Platformer founder and Hard Fork co-host. Writing and podcasting about the intersection of technology, democracy, and AI. <a href="https://signal.me/#eu/JnqpZ8L9OdqPAacsZ4S7BTFjJh4P8EcqfMlsB9pjH9Ve-395dJdCpqbQjWwWGgOt" target="_blank" rel="noopener" class="signal-link">Contact me securely on Signal.</a></p>
+                <p class="hero-subtitle">Platformer founder and Machine Gods co-host. Writing and podcasting about the intersection of technology, democracy, and AI. <a href="https://signal.me/#eu/JnqpZ8L9OdqPAacsZ4S7BTFjJh4P8EcqfMlsB9pjH9Ve-395dJdCpqbQjWwWGgOt" target="_blank" rel="noopener" class="signal-link">Contact me securely on Signal.</a></p>
             </div>
             <div class="hero-image">
                 <div class="headshot-container" role="button" tabindex="0" aria-label="Animate portrait of Casey Newton">
@@ -1067,46 +938,32 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="section-header">
-            <h2 class="section-tag">// MY WORK</h2>
-        </div>
-        <div class="projects-grid">
-            <article class="project-card">
-                <div class="project-icon">
-                    <img src="platformer-logo.svg" alt="Platformer" class="project-logo" width="200" height="200" loading="lazy" decoding="async">
-                </div>
-                <h3 class="project-name">Platformer</h3>
-                <p class="project-desc">Independent reporting and analysis on AI, technology platforms, and power. Trusted by more than 200,000 weekly readers since 2020.</p>
-                <div class="recent-posts" id="platformer-posts">
-                    <span class="posts-label">RECENT STORIES:</span>
-                    <ul class="posts-list"></ul>
-                </div>
+    <!-- Machine Gods and Platformer -->
+    <section class="promos" id="projects" aria-label="My work">
+        <div class="promos-inner">
+            <article class="promo" id="machine-gods">
+                <h2 class="promo-mark"><img src="assets/machine-gods/logo-offwhite.svg" alt="Machine Gods" class="mg-logo" width="1214" height="322"></h2>
+                <p class="promo-desc">A video-first show about AI with Kevin Roose. Twice a week from NPR.</p>
+                <ul class="listen-links" aria-label="Listen to Machine Gods">
+                    <li><a href="https://www.youtube.com/@machinegodspod?ref=cnewton.org" target="_blank" rel="noopener">YOUTUBE</a></li>
+                    <li><a href="https://podcasts.apple.com/us/podcast/machine-gods/id6812430636?ref=cnewton.org" target="_blank" rel="noopener">APPLE</a></li>
+                    <li><a href="https://open.spotify.com/show/5kxu4uluMq6jUuoNPGyZMu?si=c3ec25c874154f04&amp;ref=cnewton.org" target="_blank" rel="noopener">SPOTIFY</a></li>
+                    <li><a href="https://feeds.npr.org/g-s1-143588/podcast.xml?ref=cnewton.org" target="_blank" rel="noopener">RSS</a></li>
+                </ul>
+                <a href="https://machinegods.fm" target="_blank" rel="noopener" class="project-link">VISIT MACHINEGODS.FM</a>
+            </article>
+            <article class="promo" id="platformer">
+                <h2 class="promo-mark"><img src="assets/platformer-wordmark-light.svg" alt="Platformer" class="platformer-logo" width="912" height="105"></h2>
+                <p class="promo-desc">Independent reporting and analysis on AI, technology platforms, and power. Trusted by more than 200,000 weekly readers since 2020.</p>
                 <form class="signup-form" action="https://www.platformer.news/#/portal/signup/free" method="get" target="_blank" rel="noopener">
                     <label class="visually-hidden" for="platformer-email">Email address for Platformer subscription</label>
                     <input id="platformer-email" type="email" autocomplete="email" placeholder="Enter your email address" class="signup-input" required>
-                    <button type="submit" class="signup-button">SUBSCRIBE TO PLATFORMER</button>
+                    <button type="submit" class="signup-button">SUBSCRIBE</button>
                 </form>
                 <a href="https://www.platformer.news/" target="_blank" rel="noopener" class="project-link">READ PLATFORMER</a>
             </article>
-            <article class="project-card">
-                <div class="project-icon">
-                    <img src="hardfork-logo.png" alt="Hard Fork" class="project-logo" width="120" height="120" loading="lazy" decoding="async">
-                </div>
-                <h3 class="project-name">Hard Fork</h3>
-                <p class="project-desc">From The New York Times, a podcast about the future that's already here. Hosted by Kevin Roose and me. One of Time's 100 best podcasts of all time.</p>
-                <div class="recent-posts" id="hardfork-videos">
-                    <span class="posts-label posts-label-alt">RECENT EPISODES:</span>
-                    <ul class="posts-list posts-list-alt"></ul>
-                </div>
-                <a href="https://www.youtube.com/hardfork?sub_confirmation=1" target="_blank" rel="noopener" class="youtube-subscribe">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                    SUBSCRIBE ON YOUTUBE
-                </a>
-                <a href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener" class="project-link project-link-block">WATCH HARD FORK</a>
-            </article>
         </div>
+        <p class="previously">Before Machine Gods, Kevin and I created and hosted <a href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener">Hard Fork</a> at The New York Times, named one of Time&rsquo;s 100 best podcasts of all time.</p>
         <div class="selected-work-cta">
             <a href="/work/" class="project-link">EXPLORE SELECTED WORK</a>
         </div>
@@ -1117,7 +974,7 @@
     <footer>
         <div class="footer-links">
             <a href="https://www.platformer.news/" target="_blank" rel="noopener" class="footer-link">PLATFORMER</a>
-            <a href="https://www.nytimes.com/column/hard-fork" target="_blank" rel="noopener" class="footer-link">HARD FORK</a>
+            <a href="https://machinegods.fm" target="_blank" rel="noopener" class="footer-link">MACHINE GODS</a>
             <a href="mailto:casey@platformer.news" class="footer-link">CONTACT</a>
         </div>
         <p class="footer-copy">© 2026 Casey Newton <span>_</span></p>
@@ -1148,14 +1005,6 @@
                 }
             });
         }, observerOptions);
-
-        document.querySelectorAll('.project-card').forEach(card => {
-            if (reduceMotion.matches) {
-                card.classList.add('visible');
-            } else {
-                observer.observe(card);
-            }
-        });
 
         // Cursor trail effect
         const trails = document.querySelectorAll('.cursor-trail');
@@ -1204,96 +1053,6 @@
                 }
             });
         });
-
-        // Staggered animation for project cards
-        document.querySelectorAll('.project-card').forEach((card, i) => {
-            card.style.transitionDelay = `${i * 0.15}s`;
-        });
-
-        // Pixel icon animation on hover
-        document.querySelectorAll('.pixel-icon span').forEach((pixel, i) => {
-            pixel.style.animationDelay = `${i * 0.05}s`;
-        });
-
-        // Escape feed-sourced text before injecting it as HTML
-        function escapeHtml(str) {
-            return String(str)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;');
-        }
-
-        async function fetchJsonWithTimeout(url, timeout = 5000) {
-            const controller = new AbortController();
-            const timeoutId = window.setTimeout(() => controller.abort(), timeout);
-
-            try {
-                const response = await fetch(url, { signal: controller.signal });
-                if (!response.ok) {
-                    throw new Error(`Request failed with status ${response.status}`);
-                }
-                return await response.json();
-            } finally {
-                window.clearTimeout(timeoutId);
-            }
-        }
-
-        // Fetch Platformer RSS feed
-        async function fetchPlatformerPosts() {
-            const widget = document.getElementById('platformer-posts');
-            try {
-                const data = await fetchJsonWithTimeout('/.netlify/functions/platformer-feed');
-
-                if (data.status === 'ok' && data.items && data.items.length > 0) {
-                    const postsList = document.querySelector('#platformer-posts .posts-list');
-                    const posts = data.items.slice(0, 5);
-
-                    postsList.innerHTML = posts.map(post => {
-                        const title = post.title.length > 60
-                            ? post.title.substring(0, 60) + '...'
-                            : post.title;
-                        return `<li><a href="${escapeHtml(post.link)}" target="_blank" rel="noopener">${escapeHtml(title)}</a></li>`;
-                    }).join('');
-                } else {
-                    // Hide the widget if the feed function errored or came back empty
-                    widget.style.display = 'none';
-                }
-            } catch (error) {
-                console.log('Could not fetch Platformer posts:', error);
-                // Hide the widget if fetch fails
-                widget.style.display = 'none';
-            }
-        }
-
-        fetchPlatformerPosts();
-
-        // Fetch Hard Fork YouTube videos
-        async function fetchHardForkVideos() {
-            const widget = document.getElementById('hardfork-videos');
-            try {
-                const data = await fetchJsonWithTimeout('/.netlify/functions/hardfork-feed');
-
-                if (data.status === 'ok' && data.items && data.items.length > 0) {
-                    const videosList = document.querySelector('#hardfork-videos .posts-list');
-                    const videos = data.items.slice(0, 5);
-
-                    videosList.innerHTML = videos.map(video => {
-                        const title = video.title.length > 55
-                            ? video.title.substring(0, 55) + '...'
-                            : video.title;
-                        return `<li><a href="${escapeHtml(video.link)}" target="_blank" rel="noopener">${escapeHtml(title)}</a></li>`;
-                    }).join('');
-                } else {
-                    widget.style.display = 'none';
-                }
-            } catch (error) {
-                console.log('Could not fetch Hard Fork videos:', error);
-                widget.style.display = 'none';
-            }
-        }
-
-        fetchHardForkVideos();
 
         // Back to top button
         const backToTopBtn = document.querySelector('.back-to-top');

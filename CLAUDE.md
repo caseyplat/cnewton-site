@@ -88,7 +88,7 @@ cnewton-site/
 The site uses or may call:
 
 - Platformer RSS (via Netlify Function)
-- Hard Fork's YouTube feed (via Netlify Function)
+- Hard Fork's YouTube feed (Netlify Function kept but no longer called by the homepage)
 - Google Fonts
 
 Optional external services should degrade cleanly: a failure in a feed, API, or
@@ -96,10 +96,13 @@ widget must not prevent the site's primary static content from rendering.
 
 ## Design system
 
-**Color palette (CSS variables in shared.css):**
-- `--cyan`: Accent color (links, highlights)
-- `--magenta`: Secondary accent
-- `--darker`: Background
+**Color palette (CSS variables in shared.css):** copper & oxblood (Oct 2026),
+chosen to match the warm Jessica Chou headshot. The variable names are
+historical: `--cyan` is now the copper accent and `--magenta` the oxblood
+accent.
+- `--cyan`: Copper accent (links, highlights) — #FF9455 dark / #B04E18 light
+- `--magenta`: Oxblood secondary accent — #E0566A dark / #8E1F35 light
+- `--darker`: Background (warm black / warm off-white)
 - `--dark`: Section backgrounds
 - `--gray`: Card backgrounds
 - `--light`: Text color
